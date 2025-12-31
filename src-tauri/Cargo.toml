@@ -1,0 +1,26 @@
+[package]
+name = "file-extractor"
+version = "2.0.0"
+description = "A modern file extractor and context builder for LLMs"
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = [ "window-set-size", "window-set-resizable", "window-center", "window-unmaximize", "dialog-open", "window-unminimize", "window-start-dragging", "window-show", "window-maximize", "window-hide", "dialog-save", "fs-write-file", "fs-read-dir", "fs-read-file", "window-minimize", "window-close", "shell-open"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+dirs = "5"
+window-vibrancy = "0.4"
+
+[features]
+# This feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
