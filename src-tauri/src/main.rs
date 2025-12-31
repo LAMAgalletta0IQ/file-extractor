@@ -6,6 +6,11 @@ mod settings;
 
 use commands::{generate_output, scan_directory};
 use settings::{load_settings, save_settings, load_selections, save_selections, SettingsData};
+use std::sync::atomic::AtomicBool;
+use once_cell::sync::Lazy;
+
+// ============= GLOBAL STATE =============
+pub(crate) static GENERATION_RUNNING: Lazy<AtomicBool> = Lazy::new(|| AtomicBool::new(false));
 
 #[tauri::command]
 fn get_settings() -> Result<SettingsData, String> {

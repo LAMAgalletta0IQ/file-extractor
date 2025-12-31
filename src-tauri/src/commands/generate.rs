@@ -1,6 +1,9 @@
 use std::fs;
 use std::io::Write;
 use std::path::Path;
+use std::sync::atomic::Ordering;
+use scopeguard;
+use crate::GENERATION_RUNNING;
 
 // Constants for resource limits
 const MAX_FILE_SIZE: u64 = 50 * 1024 * 1024; // 50MB
@@ -11,6 +14,17 @@ pub async fn generate_output(
     source_name: String,
     output_path: String,
 ) -> Result<String, String> {
+    // Controlla se una generazione è già in corso
+    if GENERATION_RUNNING.compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst).is_err() {
+        return Err("Generazione già in corso, attendere il completamento".to_string());
+    }
+    
+    // Usa scopeguard per assicurarsi che il flag venga sempre rilasciato
+    // anche in caso di panic o early return
+    let _guard = scopeguard::guard((), |_| {
+        GENERATION_RUNNING.store(false, Ordering::SeqCst);
+    });
+    
     let output_path = Path::new(&output_path);
     
     // Create output file

@@ -87,6 +87,7 @@
             on:click|preventDefault|stopPropagation={() => handleSelect(suggestion)}
             class="suggestion-item"
             role="option"
+            aria-selected={sourceName === suggestion}
           >
             {suggestion}
           </button>

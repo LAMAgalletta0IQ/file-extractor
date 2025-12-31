@@ -44,6 +44,17 @@
     }
   }
   
+  function handleRowKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (node.is_dir) {
+        onToggleExpanded(node.path);
+      } else {
+        onCheckboxChange(node, !checked);
+      }
+    }
+  }
+  
   function handleCheckboxChange(e: Event) {
     const target = e.target as HTMLInputElement;
     onCheckboxChange(node, target.checked);
@@ -64,6 +75,8 @@
       role="button"
       tabindex="0"
       on:click={handleRowClick}
+      on:keydown={handleRowKeydown}
+      aria-label={node.is_dir ? `Folder: ${node.name}` : `File: ${node.name}`}
     >
       {#if node.is_dir}
         <button
@@ -201,22 +214,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1px;
-  }
-  
-  .file-icon {
-    margin-right: 8px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .file-icon :global(svg) {
-    width: 16px;
-    height: 16px;
   }
   
   .file-name {

@@ -51,21 +51,60 @@
         -webkit-user-select: auto !important;
         user-select: auto !important;
         -webkit-touch-callout: auto !important;
-        cursor: url('/cursors/hand.cur'), pointer !important;
       }
       
       /* Cursore per elementi interattivi */
       a, button, [role="button"] {
         cursor: url('/cursors/hand.cur'), pointer !important;
       }
+
+      /* Cursore per label e loro contenuti */
+      label {
+        cursor: url('/cursors/arrow.cur'), auto !important;
+      }
+
+      label:hover,
+      label:has(input):hover,
+      label:has(button):hover {
+        cursor: url('/cursors/hand.cur'), pointer !important;
+      }
+
+      /* SVG eredita il cursore del parent */
+      label svg,
+      svg {
+        cursor: inherit !important;
+        pointer-events: none;
+      }
       
-      /* Cursore per input di testo */
+      /* Cursore per input di testo - DEVE essere ibeam */
       input[type="text"],
       input[type="email"],
       input[type="password"],
       input[type="search"],
+      input[type="number"],
       textarea {
-        cursor: url('/cursors/ibeam.cur'), text !important;
+        cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+      }
+      
+      /* Cursore per select e button */
+      select, button {
+        cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+      }
+      
+      /* Forza ibeam anche su hover e focus per input di testo */
+      input[type="text"]:hover,
+      input[type="text"]:focus,
+      input[type="email"]:hover,
+      input[type="email"]:focus,
+      input[type="password"]:hover,
+      input[type="password"]:focus,
+      input[type="search"]:hover,
+      input[type="search"]:focus,
+      input[type="number"]:hover,
+      input[type="number"]:focus,
+      textarea:hover,
+      textarea:focus {
+        cursor: url('/cursors/ibeam.cur') 0 0, text !important;
       }
       
       /* Rimuovi outline di focus predefinito */

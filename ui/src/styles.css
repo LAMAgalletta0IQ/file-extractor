@@ -78,18 +78,89 @@
     cursor: url('/cursors/arrow.cur') 0 0, auto !important;
   }
 
+  /* Cursore di default per tutti gli elementi */
+  * {
+    cursor: url('/cursors/arrow.cur') 0 0, auto !important;
+  }
+
   /* Cursore personalizzato per tutti gli elementi interattivi */
   a, [role="button"], [tabindex]:not([tabindex="-1"]) {
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+  }
+
+  /* Cursore per label e loro contenuti (inclusi SVG) */
+  label {
+    cursor: url('/cursors/arrow.cur') 0 0, auto !important;
+  }
+
+  label:hover,
+  label:has(input):hover,
+  label:has(button):hover {
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+  }
+
+  /* SVG all'interno di label o altri elementi - eredita il cursore del parent */
+  label svg,
+  svg {
+    cursor: inherit !important;
+    pointer-events: none;
+  }
+
+  /* Altri elementi che potrebbero essere interattivi */
+  [onclick],
+  [onclick] * {
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+  }
+
+  /* Div e span con role button */
+  div[role="button"],
+  span[role="button"] {
     cursor: url('/cursors/hand.cur') 0 0, pointer !important;
   }
 
   /* Input e Select globali - IMPORTANTE: permettere interazioni */
   input[type="text"],
   input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
   textarea {
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
+    cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+  }
+  
+  /* Forza cursore ibeam anche su hover, focus e per tutto il contenuto */
+  input[type="text"],
+  input[type="text"]:hover,
+  input[type="text"]:focus,
+  input[type="text"]::placeholder,
+  input[type="number"],
+  input[type="number"]:hover,
+  input[type="number"]:focus,
+  input[type="email"],
+  input[type="email"]:hover,
+  input[type="email"]:focus,
+  input[type="password"],
+  input[type="password"]:hover,
+  input[type="password"]:focus,
+  input[type="search"],
+  input[type="search"]:hover,
+  input[type="search"]:focus,
+  textarea,
+  textarea:hover,
+  textarea:focus {
+    cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+  }
+  
+  /* Forza ibeam anche per il contenuto interno degli input */
+  input[type="text"] *,
+  input[type="number"] *,
+  input[type="email"] *,
+  input[type="password"] *,
+  input[type="search"] *,
+  textarea * {
     cursor: url('/cursors/ibeam.cur') 0 0, text !important;
   }
 
