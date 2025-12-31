@@ -1,9 +1,9 @@
 {
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run ui:dev",
+    "beforeBuildCommand": "npm run ui:build",
     "devPath": "http://localhost:1420",
-    "distDir": "../dist",
+    "distDir": "../ui/dist",
     "withGlobalTauri": false
   },
   "package": {
@@ -42,6 +42,9 @@
         "setSize": true,
         "setResizable": true,
         "center": true
+      },
+      "notification": {
+        "all": true
       }
     },
     "bundle": {

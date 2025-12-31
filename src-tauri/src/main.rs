@@ -41,22 +41,16 @@ fn main() {
         .setup(|app| {
             #[cfg(target_os = "windows")]
             {
-                use window_vibrancy::apply_mica;
+                use window_vibrancy::{apply_mica, apply_blur};
                 
                 let window = app.get_window("main").expect("no main window");
                 
-                // Apply Mica blur effect on Windows (dark mode)
-                // window-vibrancy 0.4 works with Tauri 1.5's window type
-                apply_mica(&window, Some(true))
-                    .expect("Failed to apply Mica effect");
-                
-                // Enable shadow for rounded corners on Windows
-                // This helps with rounded corner rendering
-                #[cfg(windows)]
-                {
-                    use tauri::Window;
-                    // Shadow is enabled by default in Tauri 1.5 for transparent windows
-                    // but we can ensure it's set if needed
+                // Apply Mica effect (Windows 11) - dark mode
+                // Fallback to Acrylic blur for Windows 10
+                if apply_mica(&window, Some(true)).is_err() {
+                    // Fallback to Acrylic blur if Mica is not available (Windows 10)
+                    apply_blur(&window, Some((18, 18, 18, 120)))
+                        .expect("Failed to apply blur effect");
                 }
             }
             

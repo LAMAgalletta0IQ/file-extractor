@@ -1,0 +1,333 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: oklch(100% 0.00011 271.152);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(96.715% 0.00011 271.152);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(80.78% 0.00009 271.152);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: oklch(19.574% 0.00002 271.152);
+    --foreground: oklch(0.985 0 0);
+    --card: rgba(44, 44, 46, 0.95);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.145 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(64.673% 0.00007 271.152);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: rgba(255, 255, 255, 0.08);
+    --input: oklch(0.269 0 0);
+    --ring: oklch(0.439 0 0);
+    
+    /* Additional variables for Svelte components - come TMC */
+    --fg: #f2f2f7;
+    --input-border: rgba(255, 255, 255, 0.12);
+    --input-bg: rgba(58, 58, 60, 0.8);
+    --input-focus: #0a84ff;
+    --bar-fill: rgba(255, 255, 255, 0.3);
+    --btn-bg: #0a84ff;
+  }
+
+  * {
+    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    background: var(--bg);
+    color: var(--fg);
+    cursor: url('/cursors/light/arrow.cur'), auto !important;
+  }
+
+  html[data-theme="dark"] body {
+    cursor: url('/cursors/dark/arrow.cur'), auto !important;
+  }
+
+  /* Cursore personalizzato per tutti gli elementi interattivi */
+  a, [role="button"], [tabindex]:not([tabindex="-1"]) {
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+  }
+
+  html[data-theme="dark"] a,
+  html[data-theme="dark"] [role="button"],
+  html[data-theme="dark"] [tabindex]:not([tabindex="-1"]) {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  /* Input e Select globali - IMPORTANTE: permettere interazioni */
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    pointer-events: auto !important;
+    cursor: url('/cursors/light/nwpen.cur'), text !important;
+  }
+
+  html[data-theme="dark"] input[type="text"],
+  html[data-theme="dark"] input[type="number"],
+  html[data-theme="dark"] textarea {
+    cursor: url('/cursors/dark/nwpen.cur'), text !important;
+  }
+
+  select,
+  button {
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    pointer-events: auto !important;
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+  }
+
+  html[data-theme="dark"] select,
+  html[data-theme="dark"] button {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    background: var(--input-bg);
+    color: var(--fg);
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--input-focus);
+  }
+
+  /* Box shadow per focus - usa il colore del tema */
+  [data-theme="light"] input[type="text"]:focus,
+  [data-theme="light"] input[type="number"]:focus,
+  [data-theme="light"] select:focus,
+  [data-theme="light"] textarea:focus {
+    box-shadow: 0 0 0 3px rgba(154, 138, 114, 0.15);
+  }
+
+  html[data-theme="dark"] input[type="text"]:focus,
+  html[data-theme="dark"] input[type="number"]:focus,
+  html[data-theme="dark"] select:focus,
+  html[data-theme="dark"] textarea:focus {
+    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
+  }
+
+  /* Select styling per Windows - più tondeggiante e carino */
+  select {
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 10px center !important;
+    background-size: 16px !important;
+    padding-right: 36px !important;
+    border-radius: 12px !important;
+    font-weight: 450 !important;
+  }
+
+  html[data-theme="dark"] select {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  /* Checkbox styling - Personalizzato e moderno */
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    background: var(--input-bg);
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    position: relative;
+    transition: all 0.2s ease;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  html[data-theme="dark"] input[type="checkbox"] {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  input[type="checkbox"]:hover,
+  input[type="checkbox"]:active,
+  input[type="checkbox"]:focus {
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+  }
+
+  html[data-theme="dark"] input[type="checkbox"]:hover,
+  html[data-theme="dark"] input[type="checkbox"]:active,
+  html[data-theme="dark"] input[type="checkbox"]:focus {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  input[type="checkbox"]:hover {
+    border-color: var(--btn-bg);
+    background: var(--card);
+  }
+
+  input[type="checkbox"]:checked {
+    background: var(--btn-bg);
+    border-color: var(--btn-bg);
+  }
+
+  input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--input-focus);
+    outline-offset: 2px;
+  }
+
+  /* Label con checkbox - cursore personalizzato (solo per label che contengono checkbox) */
+  label:has(input[type="checkbox"]) {
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+  }
+
+  html[data-theme="dark"] label:has(input[type="checkbox"]) {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  label:has(input[type="checkbox"]):hover,
+  label:has(input[type="checkbox"]):active {
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+  }
+
+  html[data-theme="dark"] label:has(input[type="checkbox"]):hover,
+  html[data-theme="dark"] label:has(input[type="checkbox"]):active {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  /* Button base */
+  button {
+    font-family: inherit;
+    font-size: 13px;
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    transition: all 0.2s;
+    color: var(--fg);
+    background: var(--card);
+    border-radius: 10px;
+  }
+
+  html[data-theme="dark"] button {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  /* Disabled state */
+  button:disabled,
+  input:disabled,
+  select:disabled {
+    opacity: 0.5;
+    cursor: url('/cursors/light/no.cur'), not-allowed !important;
+  }
+
+  html[data-theme="dark"] button:disabled,
+  html[data-theme="dark"] input:disabled,
+  html[data-theme="dark"] select:disabled {
+    cursor: url('/cursors/dark/no.cur'), not-allowed !important;
+  }
+
+  /* Focus visible per accessibilità */
+  :focus-visible {
+    outline: 2px solid var(--input-focus);
+    outline-offset: 2px;
+  }
+
+  html {
+    background: transparent;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  html[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  #root,
+  #app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Scrollbar - border-radius: 3px come TMC */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--bar-fill);
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}

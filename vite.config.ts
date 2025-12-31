@@ -1,9 +1,9 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [react()],
+  plugins: [svelte()],
   clearScreen: false,
   server: {
     port: 1420,
@@ -11,5 +11,10 @@ export default defineConfig(async () => ({
     watch: {
       ignored: ["**/src-tauri/**"],
     },
+  },
+  build: {
+    target: "es2020",
+    outDir: "dist",
+    emptyOutDir: true,
   },
 }));
