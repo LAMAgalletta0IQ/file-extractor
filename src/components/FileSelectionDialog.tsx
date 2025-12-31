@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
-import { X, Search, ChevronRight, ChevronDown } from "lucide-react";
+import { X, Search, ChevronRight, ChevronDown, Folder, Expand, ChevronsUpDown, CheckSquare, Square, Loader2, CheckCircle2 } from "lucide-react";
 import type { FileNode } from "../types";
 import { getFileIcon } from "../utils/fileIcons";
 import { showNotification } from "./Notification";
@@ -12,14 +12,12 @@ interface FileSelectionDialogProps {
   folderPath: string;
   onClose: () => void;
   onConfirm: (files: string[]) => void;
-  sourceName: string;
 }
 
 export default function FileSelectionDialog({
   folderPath,
   onClose,
   onConfirm,
-  sourceName,
 }: FileSelectionDialogProps) {
   const [tree, setTree] = useState<FileNode[]>([]);
   const [loading, setLoading] = useState(true);
@@ -65,11 +63,11 @@ export default function FileSelectionDialog({
   }, []);
 
   const loadPreviousSelections = useCallback(async () => {
-    if (!sourceName.trim()) return;
+    if (!folderPath.trim()) return;
     
     try {
       const selections = await invoke<string[]>("get_selections", {
-        sourceName: sourceName.trim(),
+        folderPath: folderPath.trim(),
       });
       
       if (selections.length > 0) {
@@ -78,13 +76,13 @@ export default function FileSelectionDialog({
     } catch (error) {
       console.error("Error loading previous selections:", error);
     }
-  }, [sourceName]);
+  }, [folderPath]);
 
   useEffect(() => {
-    if (tree.length > 0 && sourceName.trim()) {
+    if (tree.length > 0 && folderPath.trim()) {
       loadPreviousSelections();
     }
-  }, [tree, sourceName, loadPreviousSelections]);
+  }, [tree, folderPath, loadPreviousSelections]);
 
   const loadTree = async () => {
     try {
@@ -186,13 +184,20 @@ export default function FileSelectionDialog({
     return (
       <div key={node.path}>
         <div
-          className={`flex items-center py-1 px-2 hover:bg-white/10 transition-colors cursor-pointer`}
+          className={`flex items-center py-1.5 px-2 hover:bg-white/10 transition-colors cursor-pointer rounded-lg`}
           style={{ paddingLeft: `${level * 16 + 8}px` }}
           onClick={(e) => {
-            if (e.target !== e.currentTarget && (e.target as HTMLElement).tagName !== 'INPUT') {
-              if (node.is_dir) {
-                toggleExpanded(node.path);
-              }
+            // Don't toggle if clicking on chevron button or checkbox
+            const target = e.target as HTMLElement;
+            if (target.closest('button') || target.tagName === 'INPUT') {
+              return;
+            }
+            
+            if (node.is_dir) {
+              toggleExpanded(node.path);
+            } else {
+              // For files, toggle checkbox when clicking on the row
+              handleCheckboxChange(node, !checked);
             }
           }}
         >
@@ -202,7 +207,7 @@ export default function FileSelectionDialog({
                 e.stopPropagation();
                 toggleExpanded(node.path);
               }}
-              className="w-4 h-4 mr-2 flex items-center justify-center flex-shrink-0"
+              className="w-4 h-4 mr-2 flex items-center justify-center flex-shrink-0 hover:bg-white/20 rounded"
             >
               {isExpanded ? (
                 <ChevronDown className="w-4 h-4 text-white/70" />
@@ -225,7 +230,10 @@ export default function FileSelectionDialog({
               handleCheckboxChange(node, e.target.checked);
             }}
             onClick={(e) => e.stopPropagation()}
-            className="w-4 h-4 mr-2 text-blue-500 focus:ring-2 focus:ring-blue-400 flex-shrink-0 cursor-pointer"
+            className="w-5 h-5 mr-3 text-blue-500 focus:ring-2 focus:ring-blue-400/50 flex-shrink-0 cursor-pointer rounded-md border-2 border-white/30 bg-transparent checked:bg-blue-500 checked:border-blue-500 hover:border-blue-400 transition-all"
+            style={{
+              accentColor: '#3b82f6',
+            }}
           />
 
           <span className="mr-2 flex-shrink-0">{getFileIcon(node.name)}</span>
@@ -256,12 +264,11 @@ export default function FileSelectionDialog({
       return;
     }
 
-    if (sourceName.trim()) {
-      invoke("save_selection_history", {
-        sourceName: sourceName.trim(),
-        files: selectedFiles,
-      }).catch(console.error);
-    }
+    // Save selections by folder path
+    invoke("save_selection_history", {
+      folderPath: folderPath.trim(),
+      files: selectedFiles,
+    }).catch(console.error);
 
     onConfirm(selectedFiles);
   };
@@ -274,8 +281,9 @@ export default function FileSelectionDialog({
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-white/20">
           <div>
-            <h2 className="text-lg font-bold text-white">
-              📁 Source: {folderPath.split(/[/\\]/).pop()}
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <Folder className="w-5 h-5" />
+              Source: {folderPath.split(/[/\\]/).pop()}
             </h2>
           </div>
           <button
@@ -300,27 +308,31 @@ export default function FileSelectionDialog({
               collect(tree);
               setExpandedFolders(allPaths);
             }}
-            className="px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs"
+            className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs flex items-center gap-2"
           >
-            📂 Espandi Tutto
+            <Expand className="w-4 h-4" />
+            Espandi Tutto
           </button>
           <button
             onClick={() => setExpandedFolders(new Set())}
-            className="px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs"
+            className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs flex items-center gap-2"
           >
-            📁 Comprimi Tutto
+            <ChevronsUpDown className="w-4 h-4" />
+            Comprimi Tutto
           </button>
           <button
             onClick={handleSelectAll}
-            className="px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs"
+            className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs flex items-center gap-2"
           >
-            ✅ Seleziona Tutti
+            <CheckSquare className="w-4 h-4" />
+            Seleziona Tutti
           </button>
           <button
             onClick={handleSelectNone}
-            className="px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs"
+            className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/20 backdrop-blur-glass shadow-xs flex items-center gap-2"
           >
-            ❌ Deseleziona Tutti
+            <Square className="w-4 h-4" />
+            Deseleziona Tutti
           </button>
           <div className="flex-1" />
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-[10px] backdrop-blur-glass border border-white/20">
@@ -338,9 +350,10 @@ export default function FileSelectionDialog({
         {/* Tree View */}
         <div className="flex-1 overflow-y-auto p-4 hide-scrollbar">
           {loading ? (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full gap-2">
+              <Loader2 className="w-5 h-5 text-white/70 animate-spin" />
               <div className="text-white/70">
-                ⏳ Scansione in corso...
+                Scansione in corso...
               </div>
             </div>
           ) : (
@@ -352,10 +365,18 @@ export default function FileSelectionDialog({
 
         {/* Footer */}
         <div className="p-4 border-t border-white/20 flex items-center justify-between">
-          <div className="text-sm text-white/70">
-            {loading
-              ? "⏳ Scansione in corso..."
-              : `✅ Scansione completata - ${fileCount} file trovati`}
+          <div className="text-sm text-white/70 flex items-center gap-2">
+            {loading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Scansione in corso...
+              </>
+            ) : (
+              <>
+                <CheckCircle2 className="w-4 h-4 text-green-400" />
+                Scansione completata - {fileCount} file trovati
+              </>
+            )}
           </div>
           <div className="flex items-center gap-4">
             <div className="text-sm font-semibold text-blue-400">
@@ -363,14 +384,14 @@ export default function FileSelectionDialog({
             </div>
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-[10px] bg-white/10 hover:bg-white/20 text-white font-medium transition-colors border border-white/20 backdrop-blur-glass shadow-xs"
-            >
-              Annulla
-            </button>
+            className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium transition-colors border border-white/20 backdrop-blur-glass shadow-xs"
+          >
+            Annulla
+          </button>
             <button
               onClick={handleConfirm}
               disabled={selectedCount === 0}
-              className="px-4 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 disabled:bg-white/10 disabled:text-white/50 disabled:cursor-not-allowed text-white font-medium transition-colors shadow-xs"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-white/10 disabled:text-white/50 disabled:cursor-not-allowed text-white font-medium transition-colors shadow-xs"
             >
               Conferma Selezione
             </button>

@@ -19,13 +19,13 @@ fn update_settings(settings: SettingsData) -> Result<(), String> {
 }
 
 #[tauri::command]
-fn get_selections(source_name: String) -> Result<Vec<String>, String> {
-    load_selections(&source_name).map_err(|e| e.to_string())
+fn get_selections(folder_path: String) -> Result<Vec<String>, String> {
+    load_selections(&folder_path).map_err(|e| e.to_string())
 }
 
 #[tauri::command]
-fn save_selection_history(source_name: String, files: Vec<String>) -> Result<(), String> {
-    save_selections(&source_name, files).map_err(|e| e.to_string())
+fn save_selection_history(folder_path: String, files: Vec<String>) -> Result<(), String> {
+    save_selections(&folder_path, files).map_err(|e| e.to_string())
 }
 
 fn main() {

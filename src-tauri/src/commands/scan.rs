@@ -11,6 +11,43 @@ pub struct FileNode {
     pub children: Option<Vec<FileNode>>,
 }
 
+/// List of directory names to ignore (like .gitignore)
+const IGNORED_DIRS: &[&str] = &[
+    "node_modules",
+    "venv",
+    ".venv",
+    "env",
+    ".env",
+    "__pycache__",
+    ".pytest_cache",
+    "target",
+    "dist",
+    "build",
+    ".next",
+    ".nuxt",
+    ".cache",
+    ".idea",
+    ".vscode",
+    ".git",
+    ".svn",
+    ".hg",
+    ".DS_Store",
+    "vendor",
+    ".bundle",
+    ".sass-cache",
+    "coverage",
+    ".nyc_output",
+    ".gradle",
+    ".mvn",
+    "bin",
+    "obj",
+    ".vs",
+];
+
+fn should_ignore_dir(dir_name: &str) -> bool {
+    IGNORED_DIRS.contains(&dir_name.to_lowercase().as_str())
+}
+
 /// Validate that the path is safe and exists
 fn validate_directory_path(dir_path: &str) -> Result<PathBuf, String> {
     let path = Path::new(dir_path);
@@ -119,6 +156,11 @@ fn scan_directory_recursive(
         };
         
         let is_dir = metadata.is_dir();
+        
+        // Skip ignored directories (like node_modules, venv, etc.)
+        if is_dir && should_ignore_dir(&name) {
+            continue;
+        }
         
         if is_dir {
             let mut children = Vec::new();

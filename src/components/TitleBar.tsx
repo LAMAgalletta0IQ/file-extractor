@@ -44,8 +44,8 @@ export default function TitleBar() {
         </button>
         <button
           disabled
-          className="w-3 h-3 rounded-full flex items-center justify-center cursor-default opacity-50 border-none outline-none"
-          style={{ backgroundColor: '#28C840' }}
+          className="w-3 h-3 rounded-full flex items-center justify-center cursor-default border-none outline-none"
+          style={{ backgroundColor: '#4ADE80' }}
         >
         </button>
         <button

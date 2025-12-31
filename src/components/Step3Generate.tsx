@@ -2,17 +2,20 @@ import { useState } from "react";
 import { save } from "@tauri-apps/api/dialog";
 import { invoke } from "@tauri-apps/api/tauri";
 import { showNotification } from "./Notification";
+import { Sparkles, Rocket, Loader2 } from "lucide-react";
 
 interface Step3GenerateProps {
   sourceName: string;
   selectedFiles: string[];
   onSuccess: () => void;
+  onSourceNameSave: (name: string) => void;
 }
 
 export default function Step3Generate({
   sourceName,
   selectedFiles,
   onSuccess,
+  onSourceNameSave,
 }: Step3GenerateProps) {
   const [generating, setGenerating] = useState(false);
 
@@ -39,12 +42,17 @@ export default function Step3Generate({
 
       setGenerating(true);
 
+      const trimmedName = sourceName.trim();
+      
       const message = await invoke<string>("generate_output", {
         selectedPaths: selectedFiles,
-        sourceName: sourceName.trim(),
+        sourceName: trimmedName,
         outputPath: outputPath as string,
       });
 
+      // Save source name to recent sources only when exporting
+      onSourceNameSave(trimmedName);
+      
       showNotification(message, "success");
       onSuccess();
     } catch (error) {
@@ -60,15 +68,26 @@ export default function Step3Generate({
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm font-semibold text-white">
-        ✨ Step 3: Genera output
+      <label className="block text-sm font-semibold text-white flex items-center gap-2">
+        <Sparkles className="w-4 h-4" />
+        Step 3: Genera output
       </label>
       <button
         onClick={handleGenerate}
         disabled={generating || !sourceName.trim() || selectedFiles.length === 0}
-        className="w-full h-12 rounded-[10px] bg-blue-600 hover:bg-blue-700 disabled:bg-white/10 disabled:text-white/50 disabled:cursor-not-allowed text-white font-semibold transition-all"
+        className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-white/10 disabled:text-white/50 disabled:cursor-not-allowed text-white font-semibold transition-all flex items-center justify-center gap-2"
       >
-        {generating ? "⏳ Generazione in corso..." : "🚀 GENERA FILE OUTPUT"}
+        {generating ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Generazione in corso...
+          </>
+        ) : (
+          <>
+            <Rocket className="w-4 h-4" />
+            GENERA FILE OUTPUT
+          </>
+        )}
       </button>
     </div>
   );

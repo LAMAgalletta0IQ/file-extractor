@@ -64,8 +64,8 @@ pub fn save_settings(settings: &SettingsData) -> Result<(), String> {
     Ok(())
 }
 
-pub fn load_selections(source_name: &str) -> Result<Vec<String>, String> {
-    let history_file = get_settings_dir()?.join("history.json");
+pub fn load_selections(folder_path: &str) -> Result<Vec<String>, String> {
+    let history_file = get_settings_dir()?.join("folder_selections.json");
     
     if !history_file.exists() {
         return Ok(Vec::new());
@@ -77,14 +77,21 @@ pub fn load_selections(source_name: &str) -> Result<Vec<String>, String> {
     let history: BTreeMap<String, SourceSelection> = serde_json::from_str(&content)
         .map_err(|e| format!("Failed to parse history: {}", e))?;
     
+    // Normalize the path for comparison (convert to canonical path if possible)
+    let normalized_path = std::path::Path::new(folder_path)
+        .canonicalize()
+        .ok()
+        .and_then(|p| p.to_str().map(|s| s.to_string()))
+        .unwrap_or_else(|| folder_path.to_string());
+    
     Ok(history
-        .get(source_name)
+        .get(&normalized_path)
         .map(|s| s.files.clone())
         .unwrap_or_default())
 }
 
-pub fn save_selections(source_name: &str, files: Vec<String>) -> Result<(), String> {
-    let history_file = get_settings_dir()?.join("history.json");
+pub fn save_selections(folder_path: &str, files: Vec<String>) -> Result<(), String> {
+    let history_file = get_settings_dir()?.join("folder_selections.json");
     
     let mut history: BTreeMap<String, SourceSelection> = if history_file.exists() {
         let content = fs::read_to_string(&history_file)
@@ -101,13 +108,20 @@ pub fn save_selections(source_name: &str, files: Vec<String>) -> Result<(), Stri
         BTreeMap::new()
     };
     
+    // Normalize the path for storage
+    let normalized_path = std::path::Path::new(folder_path)
+        .canonicalize()
+        .ok()
+        .and_then(|p| p.to_str().map(|s| s.to_string()))
+        .unwrap_or_else(|| folder_path.to_string());
+    
     history.insert(
-        source_name.to_string(),
+        normalized_path,
         SourceSelection { files: files.clone() },
     );
     
-    // Keep only last 20 sources (BTreeMap maintains insertion order by key, so we can reliably remove oldest)
-    const MAX_HISTORY_SIZE: usize = 20;
+    // Keep only last 50 folders (BTreeMap maintains insertion order by key, so we can reliably remove oldest)
+    const MAX_HISTORY_SIZE: usize = 50;
     if history.len() > MAX_HISTORY_SIZE {
         let keys_to_remove: Vec<String> = history
             .keys()

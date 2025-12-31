@@ -31,3 +31,15 @@ Tommy-Memory-Cleaner-main
 
 # Tauri
 src-tauri/target
+
+# Personal notes and documentation
+md_personali/
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build artifacts
+*.tsbuildinfo
+.cache/

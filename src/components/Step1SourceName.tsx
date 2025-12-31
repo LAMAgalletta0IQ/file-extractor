@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Target } from "lucide-react";
 
 interface Step1SourceNameProps {
   sourceName: string;
@@ -39,8 +40,9 @@ export default function Step1SourceName({
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm font-semibold text-white">
-        🎯 Step 1: Nome della Source
+      <label className="block text-sm font-semibold text-white flex items-center gap-2">
+        <Target className="w-4 h-4" />
+        Step 1: Nome della Source
       </label>
       <div className="relative" ref={inputRef}>
         <input
@@ -63,12 +65,12 @@ export default function Step1SourceName({
           } focus:outline-none focus:ring-2 focus:ring-white/30 placeholder:text-white/50`}
         />
         {showSuggestions && filteredSuggestions.length > 0 && (
-          <div className="absolute z-10 w-full mt-1 backdrop-blur-glass border border-white/20 rounded-[12px] shadow-lg max-h-48 overflow-y-auto hide-scrollbar">
+          <div className="absolute z-10 w-full mt-1 backdrop-blur-glass border border-white/20 rounded-xl shadow-lg max-h-48 overflow-y-auto hide-scrollbar">
             {filteredSuggestions.map((suggestion, index) => (
               <button
                 key={index}
                 onClick={() => handleSelect(suggestion)}
-                className="w-full px-4 py-2 text-left hover:bg-white/20 text-white transition-colors first:rounded-t-[12px] last:rounded-b-[12px]"
+                className="w-full px-4 py-2 text-left hover:bg-white/20 text-white transition-colors first:rounded-t-xl last:rounded-b-xl"
               >
                 {suggestion}
               </button>

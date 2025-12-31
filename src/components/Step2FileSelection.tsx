@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { open } from "@tauri-apps/api/dialog";
+import { FolderOpen, FilePlus, Trash2 } from "lucide-react";
 
 interface Step2FileSelectionProps {
   selectedFiles: string[];
   onSelectedFilesChange: (files: string[]) => void;
   lastFolder: string;
   onLastFolderChange: (folder: string) => void;
-  sourceName: string;
   onScanFolder: (folder: string) => void;
 }
 
@@ -15,7 +15,6 @@ export default function Step2FileSelection({
   onSelectedFilesChange,
   lastFolder,
   onLastFolderChange,
-  sourceName,
   onScanFolder,
 }: Step2FileSelectionProps) {
   const handleScanFolder = async () => {
@@ -88,7 +87,7 @@ export default function Step2FileSelection({
       folders.get(folder)!.push(fileName);
     });
 
-    let text = `📋 ${selectedFiles.length} file selezionati:\n\n`;
+    let text = `${selectedFiles.length} file selezionati:\n\n`;
     let shownFolders = 0;
 
     for (const [folder, files] of folders.entries()) {
@@ -102,7 +101,7 @@ export default function Step2FileSelection({
       const lastSlash = folder.lastIndexOf("/");
       const lastSeparator = Math.max(lastBackslash, lastSlash);
       const folderName = lastSeparator >= 0 ? folder.substring(lastSeparator + 1) : folder;
-      text += `📁 ${folderName}/\n`;
+      text += `${folderName}/\n`;
 
       let shownFiles = 0;
       for (const file of files) {
@@ -123,32 +122,35 @@ export default function Step2FileSelection({
   return (
     <>
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-white">
-          📂 Step 2: Seleziona Source o File
+        <label className="block text-sm font-semibold text-white flex items-center gap-2">
+          <FolderOpen className="w-4 h-4" />
+          Step 2: Seleziona Source o File
         </label>
         <div className="flex gap-3">
           <button
             onClick={handleScanFolder}
-            className="flex-1 h-10 px-4 rounded-[10px] backdrop-blur-glass hover:bg-white/20 text-white font-medium transition-colors border border-white/20"
+            className="flex-1 h-10 px-4 rounded-xl backdrop-blur-glass hover:bg-white/20 text-white font-medium transition-colors border border-white/20 flex items-center justify-center gap-2"
           >
-            📁 Scansiona Cartella
+            <FolderOpen className="w-4 h-4" />
+            Scansiona Cartella
           </button>
           <button
             onClick={handleAddFiles}
-            className="flex-1 h-10 px-4 rounded-[10px] backdrop-blur-glass hover:bg-white/20 text-white font-medium transition-colors border border-white/20"
+            className="flex-1 h-10 px-4 rounded-xl backdrop-blur-glass hover:bg-white/20 text-white font-medium transition-colors border border-white/20 flex items-center justify-center gap-2"
           >
-            📄 Aggiungi File
+            <FilePlus className="w-4 h-4" />
+            Aggiungi File
           </button>
           <button
             onClick={handleClearSelection}
-            className="h-10 w-12 rounded-[10px] backdrop-blur-glass hover:bg-white/20 text-white font-medium transition-colors border border-white/20"
+            className="h-10 w-12 rounded-xl backdrop-blur-glass hover:bg-white/20 text-white font-medium transition-colors border border-white/20 flex items-center justify-center"
             title="Pulisci selezione"
           >
-            🗑️
+            <Trash2 className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="backdrop-blur-glass border border-white/20 rounded-[12px] p-4">
+        <div className="backdrop-blur-glass border border-white/20 rounded-xl p-4">
           <textarea
             readOnly
             value={filesPreview}

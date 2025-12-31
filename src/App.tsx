@@ -53,10 +53,14 @@ function App() {
 
   const handleSourceNameChange = (name: string) => {
     setSourceName(name);
-    
-    // Add to recent sources if not already present and not empty
-    if (name.trim() && !recentSources.includes(name.trim())) {
-      const updated = [name.trim(), ...recentSources.slice(0, 9)];
+    // Don't save to recent sources here - only save when exporting
+  };
+  
+  const handleSourceNameSave = (name: string) => {
+    // Save to recent sources only when exporting
+    const trimmedName = name.trim();
+    if (trimmedName && !recentSources.includes(trimmedName)) {
+      const updated = [trimmedName, ...recentSources.slice(0, 9)];
       updateSettings({ recent_sources: updated });
     }
   };
@@ -123,7 +127,6 @@ function App() {
               folderPath={scanningFolder}
               onClose={handleCloseSelection}
               onConfirm={handleConfirmSelection}
-              sourceName={sourceName}
             />
           </div>
         ) : (
@@ -142,7 +145,6 @@ function App() {
                 onSelectedFilesChange={setSelectedFiles}
                 lastFolder={lastFolder}
                 onLastFolderChange={(folder) => updateSettings({ last_folder: folder })}
-                sourceName={sourceName}
                 onScanFolder={handleScanFolder}
               />
               
@@ -152,6 +154,7 @@ function App() {
                 onSuccess={() => {
                   setSelectedFiles([]);
                 }}
+                onSourceNameSave={handleSourceNameSave}
               />
               
             </div>

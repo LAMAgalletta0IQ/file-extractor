@@ -23,10 +23,10 @@ function NotificationItem({ notification, onClose }: NotificationProps) {
   };
 
   const colors = {
-    success: "bg-green-500/20 border-green-500/50 text-green-300",
-    error: "bg-red-500/20 border-red-500/50 text-red-300",
-    warning: "bg-yellow-500/20 border-yellow-500/50 text-yellow-300",
-    info: "bg-blue-500/20 border-blue-500/50 text-blue-300",
+    success: "border-green-500/60 text-green-200",
+    error: "border-red-500/60 text-red-200",
+    warning: "border-yellow-500/60 text-yellow-200",
+    info: "border-blue-500/60 text-blue-200",
   };
 
   const Icon = icons[notification.type];
@@ -35,20 +35,28 @@ function NotificationItem({ notification, onClose }: NotificationProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 5000); // Auto-close after 5 seconds
+    }, 4000); // Auto-close after 4 seconds
 
     return () => clearTimeout(timer);
   }, [onClose]);
 
   return (
     <div
-      className={`${colorClass} border rounded-[12px] p-4 mb-3 backdrop-blur-glass shadow-lg flex items-start gap-3 transition-all duration-300`}
+      className={`${colorClass} border rounded-xl p-4 mb-3 backdrop-blur-md shadow-2xl flex items-start gap-3 transition-all duration-300 animate-in slide-in-from-right-5 fade-in`}
+      style={{
+        backgroundColor: notification.type === 'success' ? 'rgba(34, 197, 94, 0.15)' :
+                         notification.type === 'error' ? 'rgba(239, 68, 68, 0.15)' :
+                         notification.type === 'warning' ? 'rgba(234, 179, 8, 0.15)' :
+                         'rgba(59, 130, 246, 0.15)',
+        backdropFilter: 'blur(16px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+      }}
     >
       <Icon className="w-5 h-5 flex-shrink-0 mt-0.5" />
-      <div className="flex-1 text-sm font-medium">{notification.message}</div>
+      <div className="flex-1 text-sm font-medium leading-relaxed">{notification.message}</div>
       <button
         onClick={onClose}
-        className="text-white/70 hover:text-white transition-colors flex-shrink-0"
+        className="text-white/60 hover:text-white transition-colors flex-shrink-0 hover:bg-white/10 rounded p-0.5"
       >
         <X className="w-4 h-4" />
       </button>
@@ -97,14 +105,16 @@ export function NotificationContainer() {
   if (notifications.length === 0) return null;
 
   return (
-    <div className="fixed top-4 right-4 z-50 w-96 max-w-[calc(100vw-2rem)]">
-      {notifications.map((notification) => (
-        <NotificationItem
-          key={notification.id}
-          notification={notification}
-          onClose={() => handleClose(notification.id)}
-        />
-      ))}
+    <div className="fixed top-4 right-4 z-50 w-96 max-w-[calc(100vw-2rem)] pointer-events-none">
+      <div className="flex flex-col-reverse pointer-events-auto">
+        {notifications.map((notification) => (
+          <NotificationItem
+            key={notification.id}
+            notification={notification}
+            onClose={() => handleClose(notification.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
