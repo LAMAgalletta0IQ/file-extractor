@@ -183,7 +183,7 @@
     onConfirm(selectedFiles);
   }
   
-  const fileCount = allFilePaths.size;
+  $: fileCount = allFilePaths.size;
   $: selectedCount = Array.from(checkedPaths).filter(path => allFilePaths.has(path)).length;
   
   onMount(() => {
@@ -339,7 +339,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
   }
   
   .dialog-title {

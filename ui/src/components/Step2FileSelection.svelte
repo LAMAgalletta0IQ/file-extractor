@@ -179,7 +179,7 @@
     flex: 1;
     height: 40px;
     padding: 0 16px;
-    background: var(--card);
+    background: rgba(140, 140, 150, 0.1);
     border: 1px solid var(--border);
     border-radius: 10px !important;
     color: var(--fg);
@@ -190,17 +190,19 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   
   .btn-primary:hover {
-    background: var(--input-bg);
+    background: rgba(160, 160, 170, 0.2);
   }
   
   .btn-icon {
     width: 48px;
     height: 40px;
     padding: 0;
-    background: var(--card);
+    background: rgba(140, 140, 150, 0.1);
     border: 1px solid var(--border);
     border-radius: 10px !important;
     color: var(--fg);
@@ -208,17 +210,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   
   .btn-icon:hover {
-    background: var(--input-bg);
+    background: rgba(160, 160, 170, 0.2);
   }
   
   .preview-container {
-    background: var(--card);
+    background: rgba(120, 120, 130, 0.08);
     border: 1px solid var(--border);
     border-radius: 12px !important;
     padding: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   
   .preview-textarea {

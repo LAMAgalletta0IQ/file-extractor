@@ -144,12 +144,55 @@
 </div>
 
 <style>
-  .app-container {
+  :global(html), 
+  :global(body) {
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: transparent;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Rimuove eventuali bordi visibili su Windows 10 */
+  :global(body) {
+    border: none !important;
+    outline: none !important;
+  }
+  
+  :global(body) {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Variable", 
+                 system-ui, Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  :global(*) {
+    box-sizing: border-box;
+  }
+  
+  .app-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--fg);
     border-radius: 10px;
-    position: relative;
+    overflow: hidden;
+    /* Assicura che il contenuto copra completamente la finestra su Windows 10 */
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    outline: none;
   }
   
   .app-content {
@@ -158,11 +201,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.3); /* Background semi-trasparente per mostrare i bordi stondati */
-    border-radius: 10px;
-    position: relative;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
   }
   
   .selection-container {

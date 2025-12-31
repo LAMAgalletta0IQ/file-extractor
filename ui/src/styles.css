@@ -29,31 +29,32 @@
   .dark {
     --background: oklch(19.574% 0.00002 271.152);
     --foreground: oklch(0.985 0 0);
-    --card: rgba(44, 44, 46, 0.95);
+    --bg: #1c1c1e; /* Come TMC */
+    --card: rgba(120, 120, 130, 0.08); /* Estremamente trasparente per far passare Mica */
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.985 0 0);
     --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
+    --secondary: oklch(0.35 0 0); /* Più chiaro */
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(64.673% 0.00007 271.152);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
+    --muted: oklch(70% 0.00007 271.152); /* Più chiaro */
+    --muted-foreground: oklch(0.85 0 0); /* Più chiaro */
+    --accent: oklch(0.35 0 0); /* Più chiaro */
     --accent-foreground: oklch(0.985 0 0);
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);
-    --border: rgba(255, 255, 255, 0.08);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
+    --border: rgba(255, 255, 255, 0.2); /* Ancora più visibile */
+    --input: oklch(0.35 0 0); /* Più chiaro */
+    --ring: oklch(0.5 0 0); /* Più chiaro */
     
-    /* Additional variables for Svelte components - come TMC */
-    --fg: #f2f2f7;
-    --input-border: rgba(255, 255, 255, 0.12);
-    --input-bg: rgba(58, 58, 60, 0.8);
-    --input-focus: #0a84ff;
-    --bar-fill: rgba(255, 255, 255, 0.3);
-    --btn-bg: #0a84ff;
+    /* Additional variables for Svelte components - ancora più chiare */
+    --fg: #ffffff; /* Bianco puro per massima chiarezza */
+    --input-border: rgba(255, 255, 255, 0.25); /* Ancora più visibile */
+    --input-bg: rgba(140, 140, 150, 0.12); /* Estremamente trasparente per Mica */
+    --input-focus: #60a5fa; /* Blu ancora più chiaro e vivace */
+    --bar-fill: rgba(255, 255, 255, 0.5); /* Ancora più visibile */
+    --btn-bg: #60a5fa; /* Blu ancora più chiaro e vivace */
   }
 
   * {
@@ -183,6 +184,8 @@
     padding: 8px 12px;
     font-size: 13px;
     transition: all 0.2s;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
   }
 
   input[type="text"]:focus,
@@ -279,6 +282,8 @@
     color: var(--fg);
     background: var(--card);
     border-radius: 10px !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   button:hover {

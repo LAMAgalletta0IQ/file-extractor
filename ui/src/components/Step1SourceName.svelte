@@ -108,6 +108,8 @@
     color: var(--fg);
     font-size: 14px;
     transition: all 0.2s;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
   }
   
   .source-input::placeholder {
@@ -139,12 +141,14 @@
     z-index: 10;
     width: 100%;
     margin-top: 4px;
-    background: var(--card);
+    background: rgba(100, 100, 110, 0.15);
     border: 1px solid var(--border);
     border-radius: 12px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     max-height: 192px;
     overflow-y: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   
   .suggestions::-webkit-scrollbar {
@@ -172,7 +176,7 @@
   }
   
   .suggestion-item:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
   }
   
   .suggestion-item:first-child {

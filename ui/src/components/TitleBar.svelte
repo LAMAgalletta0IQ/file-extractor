@@ -60,7 +60,7 @@
 
 <div
   class="titlebar"
-  style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); flex-shrink: 0; position: relative; background-color: rgba(0, 0, 0, 0.04); border-top-left-radius: 10px; border-top-right-radius: 10px; overflow: hidden;"
+  style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); flex-shrink: 0; position: relative; background-color: rgba(255, 255, 255, 0.02); border-top-left-radius: 10px; border-top-right-radius: 10px; overflow: hidden;"
   role="banner"
 >
   <!-- Title - centered -->

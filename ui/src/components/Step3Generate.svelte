@@ -117,8 +117,8 @@
   }
   
   .generate-btn.disabled {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
   }
   
   .spinner {
