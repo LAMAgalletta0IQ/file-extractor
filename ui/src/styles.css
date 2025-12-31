@@ -76,28 +76,28 @@
     line-height: 1.5;
     background: transparent;
     color: var(--fg);
-    cursor: url('/cursors/arrow.cur') 0 0, auto !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, auto !important;
   }
 
   /* Cursore di default per tutti gli elementi */
   * {
-    cursor: url('/cursors/arrow.cur') 0 0, auto !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, auto !important;
   }
 
   /* Cursore personalizzato per tutti gli elementi interattivi */
   a, [role="button"], [tabindex]:not([tabindex="-1"]) {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   /* Cursore per label e loro contenuti (inclusi SVG) */
   label {
-    cursor: url('/cursors/arrow.cur') 0 0, auto !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, auto !important;
   }
 
   label:hover,
   label:has(input):hover,
   label:has(button):hover {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   /* SVG all'interno di label o altri elementi - eredita il cursore del parent */
@@ -110,13 +110,13 @@
   /* Altri elementi che potrebbero essere interattivi */
   [onclick],
   [onclick] * {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   /* Div e span con role button */
   div[role="button"],
   span[role="button"] {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   /* Input e Select globali - IMPORTANTE: permettere interazioni */
@@ -129,7 +129,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, text !important;
   }
   
   /* Forza cursore ibeam anche su hover, focus e per tutto il contenuto */
@@ -152,7 +152,7 @@
   textarea,
   textarea:hover,
   textarea:focus {
-    cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, text !important;
   }
   
   /* Forza ibeam anche per il contenuto interno degli input */
@@ -162,7 +162,7 @@
   input[type="password"] *,
   input[type="search"] *,
   textarea * {
-    cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, text !important;
   }
 
   select,
@@ -170,7 +170,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   input[type="text"],
@@ -213,7 +213,7 @@
 
   /* Select styling per Windows - più tondeggiante e carino */
   select {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
     -webkit-appearance: none !important;
     appearance: none !important;
     -moz-appearance: none !important;
@@ -235,7 +235,7 @@
     border: 2px solid var(--border);
     border-radius: 6px !important;
     background: var(--input-bg);
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
     position: relative;
     transition: all 0.2s ease;
     margin: 0;
@@ -245,7 +245,7 @@
   input[type="checkbox"]:hover,
   input[type="checkbox"]:active,
   input[type="checkbox"]:focus {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   input[type="checkbox"]:hover {
@@ -265,19 +265,19 @@
 
   /* Label con checkbox - cursore personalizzato (solo per label che contengono checkbox) */
   label:has(input[type="checkbox"]) {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   label:has(input[type="checkbox"]):hover,
   label:has(input[type="checkbox"]):active {
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
   }
 
   /* Button base */
   button {
     font-family: inherit;
     font-size: 13px;
-    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
     transition: all 0.2s;
     color: var(--fg);
     background: var(--card);
@@ -295,7 +295,7 @@
   input:disabled,
   select:disabled {
     opacity: 0.5;
-    cursor: url('/cursors/no.cur') 0 0, not-allowed !important;
+    cursor: url('/cursor/Arrow.cur') 0 0, not-allowed !important;
   }
 
   /* Focus visible per accessibilità */

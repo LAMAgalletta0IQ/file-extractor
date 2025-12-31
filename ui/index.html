@@ -64,18 +64,18 @@
       
       /* Cursore per elementi interattivi */
       a, button, [role="button"] {
-        cursor: url('/cursors/hand.cur'), pointer !important;
+        cursor: url('/cursor/Hand.cur'), pointer !important;
       }
 
       /* Cursore per label e loro contenuti */
       label {
-        cursor: url('/cursors/arrow.cur'), auto !important;
+        cursor: url('/cursor/Arrow.cur'), auto !important;
       }
 
       label:hover,
       label:has(input):hover,
       label:has(button):hover {
-        cursor: url('/cursors/hand.cur'), pointer !important;
+        cursor: url('/cursor/Hand.cur'), pointer !important;
       }
 
       /* SVG eredita il cursore del parent */
@@ -92,12 +92,12 @@
       input[type="search"],
       input[type="number"],
       textarea {
-        cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+        cursor: url('/cursor/Arrow.cur') 0 0, text !important;
       }
       
       /* Cursore per select e button */
       select, button {
-        cursor: url('/cursors/hand.cur') 0 0, pointer !important;
+        cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
       }
       
       /* Forza ibeam anche su hover e focus per input di testo */
@@ -113,7 +113,7 @@
       input[type="number"]:focus,
       textarea:hover,
       textarea:focus {
-        cursor: url('/cursors/ibeam.cur') 0 0, text !important;
+        cursor: url('/cursor/Arrow.cur') 0 0, text !important;
       }
       
       /* Rimuovi outline di focus predefinito */

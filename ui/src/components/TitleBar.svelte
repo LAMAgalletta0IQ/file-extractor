@@ -38,7 +38,7 @@
   onMount(() => {
     // Apply cursor to titlebar - Konata Izumi
     const applyCursor = () => {
-      const cursorUrl = 'url(/cursors/sizeall.cur), move';
+      const cursorUrl = 'url(/cursor/Arrow.cur), move';
       
       const titlebar = document.querySelector('.titlebar') as HTMLElement;
       const draggable = document.querySelector('.draggable') as HTMLElement;
@@ -109,14 +109,14 @@
   .titlebar {
     user-select: none;
     -webkit-app-region: no-drag;
-    cursor: url('/cursors/sizeall.cur'), move !important;
+    cursor: url('/cursor/Arrow.cur'), move !important;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow: hidden;
   }
   
   .draggable {
-    cursor: url('/cursors/sizeall.cur'), move !important;
+    cursor: url('/cursor/Arrow.cur'), move !important;
     -webkit-app-region: no-drag;
     user-select: none;
   }
@@ -136,7 +136,7 @@
     border-radius: 50%;
     border: none;
     outline: none;
-    cursor: url('/cursors/hand.cur'), pointer !important;
+    cursor: url('/cursor/Hand.cur'), pointer !important;
     padding: 0;
     -webkit-app-region: no-drag;
     transition: all 0.2s ease;
@@ -147,7 +147,7 @@
   
   
   .traffic:disabled {
-    cursor: url('/cursors/no.cur'), not-allowed !important;
+    cursor: url('/cursor/Arrow.cur'), not-allowed !important;
   }
   
   .traffic:disabled:hover {
