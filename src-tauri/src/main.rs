@@ -45,23 +45,15 @@ fn main() {
             #[cfg(target_os = "windows")]
             {
                 use tauri::Manager;
-                use tauri::window::{Effect, EffectState, EffectsBuilder};
                 
-                if let Some(window) = app.get_window("main") {
+                if let Some(window) = app.get_webview_window("main") {
                     // Apply Mica effect (Windows 11) - dark mode
                     // Fallback to Acrylic blur for Windows 10
-                    let effects = EffectsBuilder::new()
-                        .effect(Effect::Mica)
-                        .state(EffectState::Active)
-                        .build();
+                    use tauri::window::Effect;
                     
-                    if window.set_effects(effects).is_err() {
+                    if let Err(_) = window.set_effect(Effect::Mica) {
                         // Fallback to Acrylic blur if Mica is not available (Windows 10)
-                        let blur_effects = EffectsBuilder::new()
-                            .effect(Effect::Blur)
-                            .state(EffectState::Active)
-                            .build();
-                        let _ = window.set_effects(blur_effects);
+                        let _ = window.set_effect(Effect::Blur);
                     }
                 }
             }
