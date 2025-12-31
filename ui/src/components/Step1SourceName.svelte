@@ -102,7 +102,7 @@
     height: 44px;
     padding: 0 16px;
     border: 1px solid var(--input-border);
-    border-radius: 12px;
+    border-radius: 12px !important;
     background: var(--input-bg);
     color: var(--fg);
     font-size: 14px;
@@ -140,7 +140,7 @@
     margin-top: 4px;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 12px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     max-height: 192px;
     overflow-y: auto;

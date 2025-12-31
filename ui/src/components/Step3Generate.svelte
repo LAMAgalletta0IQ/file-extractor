@@ -101,7 +101,7 @@
     padding: 0 16px;
     background: #2563eb;
     border: none;
-    border-radius: 10px;
+    border-radius: 10px !important;
     color: white;
     font-weight: 600;
     font-size: 14px;

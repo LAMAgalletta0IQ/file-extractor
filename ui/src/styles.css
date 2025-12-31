@@ -73,7 +73,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.5;
-    background: var(--bg);
+    background: transparent;
     color: var(--fg);
     cursor: url('/cursors/light/arrow.cur'), auto !important;
   }
@@ -100,13 +100,13 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/light/nwpen.cur'), text !important;
+    cursor: url('/cursors/light/ibeam.cur'), text !important;
   }
 
   html[data-theme="dark"] input[type="text"],
   html[data-theme="dark"] input[type="number"],
   html[data-theme="dark"] textarea {
-    cursor: url('/cursors/dark/nwpen.cur'), text !important;
+    cursor: url('/cursors/dark/ibeam.cur'), text !important;
   }
 
   select,
@@ -129,7 +129,7 @@
     background: var(--input-bg);
     color: var(--fg);
     border: 1px solid var(--input-border);
-    border-radius: 12px;
+    border-radius: 12px !important;
     padding: 8px 12px;
     font-size: 13px;
     transition: all 0.2s;
@@ -184,7 +184,7 @@
     width: 18px;
     height: 18px;
     border: 2px solid var(--border);
-    border-radius: 6px;
+    border-radius: 6px !important;
     background: var(--input-bg);
     cursor: url('/cursors/light/hand.cur'), pointer !important;
     position: relative;
@@ -251,7 +251,7 @@
     transition: all 0.2s;
     color: var(--fg);
     background: var(--card);
-    border-radius: 10px;
+    border-radius: 10px !important;
   }
 
   html[data-theme="dark"] button {
@@ -319,12 +319,12 @@
   
   ::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 3px;
+    border-radius: 3px !important;
   }
   
   ::-webkit-scrollbar-thumb {
     background: var(--bar-fill);
-    border-radius: 3px;
+    border-radius: 3px !important;
   }
   
   ::-webkit-scrollbar-thumb:hover {

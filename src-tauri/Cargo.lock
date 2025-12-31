@@ -962,6 +962,7 @@ dependencies = [
  "tauri-build",
  "tokio",
  "window-vibrancy",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]

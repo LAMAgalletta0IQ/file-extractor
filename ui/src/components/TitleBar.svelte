@@ -111,15 +111,21 @@
   }
   
   .traffic {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     border: none;
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    padding: 0;
+  }
+  
+  :global(html[data-theme="dark"]) .traffic {
+    cursor: url('/cursors/dark/hand.cur'), pointer !important;
   }
   
   .traffic:hover {
@@ -131,7 +137,11 @@
   }
   
   .traffic:disabled {
-    cursor: default;
+    cursor: url('/cursors/light/no.cur'), not-allowed !important;
+  }
+  
+  :global(html[data-theme="dark"]) .traffic:disabled {
+    cursor: url('/cursors/dark/no.cur'), not-allowed !important;
   }
   
   .traffic:disabled:hover {
@@ -139,14 +149,14 @@
   }
   
   .min {
-    background-color: #FFBD2E;
+    background: #ffbd2e;
   }
   
   .max {
-    background-color: #4ADE80;
+    background: #28c840;
   }
   
   .close {
-    background-color: #FF5F57;
+    background: #ff5f57;
   }
 </style>

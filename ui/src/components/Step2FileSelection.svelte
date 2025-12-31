@@ -181,7 +181,7 @@
     padding: 0 16px;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 10px !important;
     color: var(--fg);
     font-weight: 500;
     font-size: 13px;
@@ -202,7 +202,7 @@
     padding: 0;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 10px !important;
     color: var(--fg);
     transition: all 0.2s;
     display: flex;
@@ -217,7 +217,7 @@
   .preview-container {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 12px !important;
     padding: 16px;
   }
   

@@ -129,7 +129,7 @@
     align-items: center;
     padding: 6px 8px;
     transition: background-color 0.2s;
-    border-radius: 8px;
+    border-radius: 8px !important;
   }
   
   .tree-item:hover {
@@ -160,7 +160,7 @@
     height: 20px;
     margin-right: 12px;
     flex-shrink: 0;
-    border-radius: 6px;
+    border-radius: 6px !important;
     border: 2px solid rgba(255, 255, 255, 0.3);
     background-color: transparent;
     appearance: none;

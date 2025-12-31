@@ -377,7 +377,7 @@
   
   .toolbar-btn {
     padding: 6px 12px;
-    border-radius: 10px;
+    border-radius: 10px !important;
     background: var(--card);
     border: 1px solid var(--border);
     color: var(--fg);
@@ -397,7 +397,7 @@
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
-    border-radius: 12px;
+    border-radius: 12px !important;
     background: var(--input-bg);
     border: 1px solid var(--input-border);
     color: var(--fg);
@@ -432,7 +432,11 @@
   
   .tree-view::-webkit-scrollbar-thumb {
     background: var(--bar-fill);
-    border-radius: 3px;
+    border-radius: 3px !important;
+  }
+  
+  .tree-view::-webkit-scrollbar-track {
+    border-radius: 3px !important;
   }
   
   .loading-state {
@@ -480,7 +484,7 @@
   
   .btn-secondary {
     padding: 8px 16px;
-    border-radius: 10px;
+    border-radius: 10px !important;
     background: var(--card);
     border: 1px solid var(--border);
     color: var(--fg);
@@ -495,7 +499,7 @@
   
   .btn-primary {
     padding: 8px 16px;
-    border-radius: 10px;
+    border-radius: 10px !important;
     background: #2563eb;
     border: none;
     color: white;
