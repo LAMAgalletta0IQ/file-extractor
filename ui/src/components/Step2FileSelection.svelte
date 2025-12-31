@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { open } from '@tauri-apps/api/dialog';
+  import { open } from '@tauri-apps/plugin-dialog';
   
   export let selectedFiles: string[] = [];
   export let onSelectedFilesChange: (files: string[]) => void = () => {};

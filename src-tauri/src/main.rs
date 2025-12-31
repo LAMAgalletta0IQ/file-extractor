@@ -6,7 +6,6 @@ mod settings;
 
 use commands::{generate_output, scan_directory};
 use settings::{load_settings, save_settings, load_selections, save_selections, SettingsData};
-use tauri::Manager;
 
 #[tauri::command]
 fn get_settings() -> Result<SettingsData, String> {
@@ -30,6 +29,10 @@ fn save_selection_history(folder_path: String, files: Vec<String>) -> Result<(),
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_notification::init())
         .invoke_handler(tauri::generate_handler![
             scan_directory,
             generate_output,
@@ -41,24 +44,25 @@ fn main() {
         .setup(|app| {
             #[cfg(target_os = "windows")]
             {
-                use window_vibrancy::{apply_mica, apply_blur};
+                use tauri::Manager;
+                use tauri::window::{Effect, EffectState, EffectsBuilder};
                 
-                let window = app.get_window("main").expect("no main window");
-                
-                // Apply Mica effect (Windows 11) - dark mode
-                // Fallback to Acrylic blur for Windows 10
-                if apply_mica(&window, Some(true)).is_err() {
-                    // Fallback to Acrylic blur if Mica is not available (Windows 10)
-                    apply_blur(&window, Some((18, 18, 18, 120)))
-                        .expect("Failed to apply blur effect");
-                }
-            }
-            
-            // Abilita devtools per debug (tasto destro -> Inspect o F12)
-            #[cfg(debug_assertions)]
-            {
                 if let Some(window) = app.get_window("main") {
-                    let _ = window.open_devtools();
+                    // Apply Mica effect (Windows 11) - dark mode
+                    // Fallback to Acrylic blur for Windows 10
+                    let effects = EffectsBuilder::new()
+                        .effect(Effect::Mica)
+                        .state(EffectState::Active)
+                        .build();
+                    
+                    if window.set_effects(effects).is_err() {
+                        // Fallback to Acrylic blur if Mica is not available (Windows 10)
+                        let blur_effects = EffectsBuilder::new()
+                            .effect(Effect::Blur)
+                            .state(EffectState::Active)
+                            .build();
+                        let _ = window.set_effects(blur_effects);
+                    }
                 }
             }
             

@@ -13,6 +13,6 @@
     "install:all": "npm install && cd ui && npm install"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.5.9"
+    "@tauri-apps/cli": "^2"
   }
 }

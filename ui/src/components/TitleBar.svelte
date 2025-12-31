@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { appWindow } from '@tauri-apps/api/window';
+  import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
   
-  const appWindowInstance = appWindow;
+  const appWindowInstance = WebviewWindow.getCurrent();
 
   async function handleClose() {
     await appWindowInstance.close();

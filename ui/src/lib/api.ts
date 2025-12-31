@@ -1,4 +1,4 @@
-import { invoke } from '@tauri-apps/api/tauri';
+import { invoke } from '@tauri-apps/api/core';
 import type { SettingsData, FileNode } from '../types';
 
 export async function getSettings(): Promise<SettingsData> {

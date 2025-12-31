@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { appWindow, LogicalSize } from '@tauri-apps/api/window';
+  import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
+  import { LogicalSize } from '@tauri-apps/api/window';
   import { getSettings, updateSettings } from './lib/api';
   import type { SettingsData } from './types';
   import TitleBar from './components/TitleBar.svelte';
@@ -11,6 +12,8 @@
   
   const NORMAL_SIZE = { width: 620, height: 580 };
   const SELECTION_SIZE = { width: 900, height: 650 };
+  
+  const appWindow = WebviewWindow.getCurrent();
   
   let sourceName = '';
   let selectedFiles: string[] = [];

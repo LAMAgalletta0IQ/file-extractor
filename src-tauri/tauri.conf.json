@@ -1,70 +1,51 @@
 {
+  "productName": "File Extractor",
+  "version": "2.0.0",
+  "identifier": "com.fileextractor.app",
   "build": {
-    "beforeDevCommand": "npm run ui:dev",
-    "beforeBuildCommand": "npm run ui:build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../ui/dist",
-    "withGlobalTauri": false
+    "beforeDevCommand": {
+      "script": "npm run ui:dev",
+      "cwd": "../ui"
+    },
+    "beforeBuildCommand": {
+      "script": "npm run ui:build",
+      "cwd": "../ui"
+    },
+    "frontendDist": "../ui/dist",
+    "devUrl": "http://localhost:1420"
   },
-  "package": {
-    "productName": "File Extractor",
-    "version": "2.0.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "dialog": {
-        "all": false,
-        "open": true,
-        "save": true
-      },
-      "fs": {
-        "all": false,
-        "readFile": true,
-        "writeFile": true,
-        "readDir": true,
-        "scope": ["**"]
-      },
-      "window": {
-        "all": false,
-        "close": true,
-        "hide": true,
-        "show": true,
-        "maximize": true,
-        "minimize": true,
-        "unmaximize": true,
-        "unminimize": true,
-        "startDragging": true,
-        "setSize": true,
-        "setResizable": true,
-        "center": true
-      },
-      "notification": {
-        "all": true
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "com.fileextractor.app"
-    },
-    "security": {
-      "csp": null
-    },
+  "app": {
     "windows": [
       {
-        "fullscreen": false,
-        "resizable": false,
+        "label": "main",
         "title": "File Extractor",
         "width": 620,
         "height": 580,
+        "resizable": false,
         "decorations": false,
-        "transparent": true
+        "transparent": true,
+        "shadow": false,
+        "center": true,
+        "fullscreen": false
       }
-    ]
-  }
+    ],
+    "security": {
+      "csp": null,
+      "devCsp": null,
+      "freezePrototype": false,
+      "dangerousDisableAssetCspModification": false
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/icon.ico"
+    ],
+    "copyright": "© 2025",
+    "category": "Utility",
+    "shortDescription": "A modern file extractor and context builder for LLMs",
+    "longDescription": "File Extractor - Extract and organize files for LLM context building"
+  },
+  "plugins": {}
 }

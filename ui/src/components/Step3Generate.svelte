@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { save } from '@tauri-apps/api/dialog';
+  import { save } from '@tauri-apps/plugin-dialog';
   import { generateOutput } from '../lib/api';
   import { showToastNotification } from '../lib/notifications';
   

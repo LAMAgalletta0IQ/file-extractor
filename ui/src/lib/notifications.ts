@@ -1,4 +1,4 @@
-import { sendNotification, isPermissionGranted, requestPermission } from '@tauri-apps/api/notification';
+import { sendNotification, isPermissionGranted, requestPermission } from '@tauri-apps/plugin-notification';
 
 export type NotificationType = 'success' | 'error' | 'warning' | 'info';
 
