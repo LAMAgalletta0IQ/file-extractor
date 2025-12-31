@@ -75,12 +75,12 @@
     line-height: 1.5;
     background: transparent;
     color: var(--fg);
-    cursor: url('/cursors/arrow.ani'), auto !important;
+    cursor: url('/cursors/arrow.cur') 0 0, auto !important;
   }
 
   /* Cursore personalizzato per tutti gli elementi interattivi */
   a, [role="button"], [tabindex]:not([tabindex="-1"]) {
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
   }
 
   /* Input e Select globali - IMPORTANTE: permettere interazioni */
@@ -90,7 +90,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/ibeam.ani'), text !important;
+    cursor: url('/cursors/ibeam.cur') 0 0, text !important;
   }
 
   select,
@@ -98,7 +98,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
   }
 
   input[type="text"],
@@ -139,7 +139,7 @@
 
   /* Select styling per Windows - più tondeggiante e carino */
   select {
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
     -webkit-appearance: none !important;
     appearance: none !important;
     -moz-appearance: none !important;
@@ -161,7 +161,7 @@
     border: 2px solid var(--border);
     border-radius: 6px !important;
     background: var(--input-bg);
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
     position: relative;
     transition: all 0.2s ease;
     margin: 0;
@@ -171,7 +171,7 @@
   input[type="checkbox"]:hover,
   input[type="checkbox"]:active,
   input[type="checkbox"]:focus {
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
   }
 
   input[type="checkbox"]:hover {
@@ -191,19 +191,19 @@
 
   /* Label con checkbox - cursore personalizzato (solo per label che contengono checkbox) */
   label:has(input[type="checkbox"]) {
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
   }
 
   label:has(input[type="checkbox"]):hover,
   label:has(input[type="checkbox"]):active {
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
   }
 
   /* Button base */
   button {
     font-family: inherit;
     font-size: 13px;
-    cursor: url('/cursors/hand.ani'), pointer !important;
+    cursor: url('/cursors/hand.cur') 0 0, pointer !important;
     transition: all 0.2s;
     color: var(--fg);
     background: var(--card);
@@ -219,7 +219,7 @@
   input:disabled,
   select:disabled {
     opacity: 0.5;
-    cursor: url('/cursors/no.ani'), not-allowed !important;
+    cursor: url('/cursors/no.cur') 0 0, not-allowed !important;
   }
 
   /* Focus visible per accessibilità */

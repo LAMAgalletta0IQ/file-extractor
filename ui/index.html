@@ -40,6 +40,12 @@
                      system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
       }
       
+      /* Gestione drag regions - rimuoviamo data-tauri-drag-region per permettere cursore personalizzato */
+      /* Il drag viene gestito manualmente con startDragging() */
+      * {
+        -webkit-app-region: no-drag;
+      }
+      
       /* Permetti selezione per elementi form */
       input, select, textarea, button, [contenteditable] {
         -webkit-user-select: auto !important;

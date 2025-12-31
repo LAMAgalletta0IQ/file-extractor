@@ -13,8 +13,9 @@
   }
 
   async function handleDragStart(e: MouseEvent) {
+    // Solo se è click sinistro e non su un elemento interattivo (button, input, select)
     const target = e.target as HTMLElement;
-    if (e.button === 0 && !target.closest('button, .traffic')) {
+    if (e.button === 0 && !target.closest('button, input, select, .traffic')) {
       e.preventDefault();
       try {
         await appWindowInstance.startDragging();
@@ -40,16 +41,26 @@
       }
     };
     
+    // Applica subito e ripetutamente per assicurarsi che venga applicato
     setTimeout(() => applyCursor(), 50);
     setTimeout(() => applyCursor(), 100);
     setTimeout(() => applyCursor(), 200);
+    
+    // Applica anche su mouseenter per essere sicuri
+    const titlebarEl = document.querySelector('.titlebar');
+    const draggableEl = document.querySelector('.draggable');
+    if (titlebarEl) {
+      titlebarEl.addEventListener('mouseenter', applyCursor);
+    }
+    if (draggableEl) {
+      draggableEl.addEventListener('mouseenter', applyCursor);
+    }
   });
 </script>
 
 <div
   class="titlebar"
   style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); flex-shrink: 0; position: relative; background-color: rgba(0, 0, 0, 0.04); border-top-left-radius: 10px; border-top-right-radius: 10px; overflow: hidden;"
-  data-tauri-drag-region
   on:mousedown={handleDragStart}
   role="banner"
 >
@@ -57,7 +68,7 @@
   <div
     class="draggable"
     style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; font-size: 16px; color: white; pointer-events: none;"
-    data-tauri-drag-region
+    on:mousedown={handleDragStart}
   >
     <img src="/icon.ico" alt="File Extractor Icon" style="width: 20px; height: 20px; pointer-events: none;" />
     File Extractor
@@ -96,10 +107,13 @@
 <style>
   .titlebar {
     user-select: none;
+    -webkit-app-region: no-drag;
+    cursor: url('/cursors/sizeall.cur'), move !important;
   }
   
   .draggable {
-    /* Cursor is set via JavaScript based on theme */
+    cursor: url('/cursors/sizeall.cur'), move !important;
+    -webkit-app-region: no-drag;
   }
   
   .traffic {
@@ -114,6 +128,7 @@
     transition: all 0.2s ease;
     cursor: url('/cursors/hand.cur'), pointer !important;
     padding: 0;
+    -webkit-app-region: no-drag;
   }
   
   .traffic:hover {
