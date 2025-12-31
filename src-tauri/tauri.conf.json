@@ -4,11 +4,11 @@
   "identifier": "com.fileextractor.app",
   "build": {
     "beforeDevCommand": {
-      "script": "npm run ui:dev",
+      "script": "npm run dev",
       "cwd": "../ui"
     },
     "beforeBuildCommand": {
-      "script": "npm run ui:build",
+      "script": "npm run build",
       "cwd": "../ui"
     },
     "frontendDist": "../ui/dist",
