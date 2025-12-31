@@ -331,6 +331,7 @@
     flex-direction: column;
     overflow: hidden;
     min-height: 0;
+    border-radius: 10px;
   }
   
   .dialog-header {
@@ -460,6 +461,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
   }
   
   .footer-info {

@@ -309,6 +309,11 @@
     color-scheme: dark;
   }
 
+  body {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
   #root,
   #app {
     width: 100vw;
@@ -316,6 +321,7 @@
     overflow: hidden;
     background: transparent;
     border-radius: 10px;
+    position: relative;
   }
 
   /* Hide scrollbar but keep scroll functionality */

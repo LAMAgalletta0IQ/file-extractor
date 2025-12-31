@@ -110,6 +110,9 @@
     user-select: none;
     -webkit-app-region: no-drag;
     cursor: url('/cursors/sizeall.cur'), move !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
   }
   
   .draggable {

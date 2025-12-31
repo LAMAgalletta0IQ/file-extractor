@@ -149,6 +149,7 @@
     height: 100%;
     overflow: hidden;
     border-radius: 10px;
+    position: relative;
   }
   
   .app-content {
@@ -157,9 +158,11 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: transparent; /* Trasparente per far passare il blur Mica */
+    background: rgba(0, 0, 0, 0.3); /* Background semi-trasparente per mostrare i bordi stondati */
     border-radius: 10px;
-    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   
   .selection-container {
@@ -168,6 +171,7 @@
     flex-direction: column;
     min-height: 0;
     overflow: hidden;
+    border-radius: 10px;
   }
   
   .main-content {
