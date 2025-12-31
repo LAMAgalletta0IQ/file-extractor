@@ -75,22 +75,12 @@
     line-height: 1.5;
     background: transparent;
     color: var(--fg);
-    cursor: url('/cursors/light/arrow.cur'), auto !important;
-  }
-
-  html[data-theme="dark"] body {
-    cursor: url('/cursors/dark/arrow.cur'), auto !important;
+    cursor: url('/cursors/arrow.cur'), auto !important;
   }
 
   /* Cursore personalizzato per tutti gli elementi interattivi */
   a, [role="button"], [tabindex]:not([tabindex="-1"]) {
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
-  }
-
-  html[data-theme="dark"] a,
-  html[data-theme="dark"] [role="button"],
-  html[data-theme="dark"] [tabindex]:not([tabindex="-1"]) {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
   }
 
   /* Input e Select globali - IMPORTANTE: permettere interazioni */
@@ -100,13 +90,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/light/ibeam.cur'), text !important;
-  }
-
-  html[data-theme="dark"] input[type="text"],
-  html[data-theme="dark"] input[type="number"],
-  html[data-theme="dark"] textarea {
-    cursor: url('/cursors/dark/ibeam.cur'), text !important;
+    cursor: url('/cursors/ibeam.cur'), text !important;
   }
 
   select,
@@ -114,12 +98,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
-  }
-
-  html[data-theme="dark"] select,
-  html[data-theme="dark"] button {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
   }
 
   input[type="text"],
@@ -160,7 +139,7 @@
 
   /* Select styling per Windows - più tondeggiante e carino */
   select {
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
     -webkit-appearance: none !important;
     appearance: none !important;
     -moz-appearance: none !important;
@@ -173,10 +152,6 @@
     font-weight: 450 !important;
   }
 
-  html[data-theme="dark"] select {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
-  }
-
   /* Checkbox styling - Personalizzato e moderno */
   input[type="checkbox"] {
     -webkit-appearance: none;
@@ -186,27 +161,17 @@
     border: 2px solid var(--border);
     border-radius: 6px !important;
     background: var(--input-bg);
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
     position: relative;
     transition: all 0.2s ease;
     margin: 0;
     flex-shrink: 0;
   }
 
-  html[data-theme="dark"] input[type="checkbox"] {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
-  }
-
   input[type="checkbox"]:hover,
   input[type="checkbox"]:active,
   input[type="checkbox"]:focus {
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
-  }
-
-  html[data-theme="dark"] input[type="checkbox"]:hover,
-  html[data-theme="dark"] input[type="checkbox"]:active,
-  html[data-theme="dark"] input[type="checkbox"]:focus {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
   }
 
   input[type="checkbox"]:hover {
@@ -226,36 +191,23 @@
 
   /* Label con checkbox - cursore personalizzato (solo per label che contengono checkbox) */
   label:has(input[type="checkbox"]) {
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
-  }
-
-  html[data-theme="dark"] label:has(input[type="checkbox"]) {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
   }
 
   label:has(input[type="checkbox"]):hover,
   label:has(input[type="checkbox"]):active {
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
-  }
-
-  html[data-theme="dark"] label:has(input[type="checkbox"]):hover,
-  html[data-theme="dark"] label:has(input[type="checkbox"]):active {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
   }
 
   /* Button base */
   button {
     font-family: inherit;
     font-size: 13px;
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
     transition: all 0.2s;
     color: var(--fg);
     background: var(--card);
     border-radius: 10px !important;
-  }
-
-  html[data-theme="dark"] button {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
   }
 
   button:hover {
@@ -267,13 +219,7 @@
   input:disabled,
   select:disabled {
     opacity: 0.5;
-    cursor: url('/cursors/light/no.cur'), not-allowed !important;
-  }
-
-  html[data-theme="dark"] button:disabled,
-  html[data-theme="dark"] input:disabled,
-  html[data-theme="dark"] select:disabled {
-    cursor: url('/cursors/dark/no.cur'), not-allowed !important;
+    cursor: url('/cursors/no.cur'), not-allowed !important;
   }
 
   /* Focus visible per accessibilità */

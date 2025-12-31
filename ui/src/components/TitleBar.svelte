@@ -25,12 +25,9 @@
   }
 
   onMount(() => {
-    // Apply cursor to titlebar like TMC
+    // Apply cursor to titlebar - Konata Izumi
     const applyCursor = () => {
-      const theme = document.documentElement.getAttribute('data-theme');
-      const cursorUrl = theme === 'dark' 
-        ? 'url(/cursors/dark/sizeall.cur), move' 
-        : 'url(/cursors/light/sizeall.cur), move';
+      const cursorUrl = 'url(/cursors/sizeall.cur), move';
       
       const titlebar = document.querySelector('.titlebar') as HTMLElement;
       const draggable = document.querySelector('.draggable') as HTMLElement;
@@ -46,11 +43,6 @@
     setTimeout(() => applyCursor(), 50);
     setTimeout(() => applyCursor(), 100);
     setTimeout(() => applyCursor(), 200);
-    
-    const observer = new MutationObserver(() => {
-      setTimeout(() => applyCursor(), 50);
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   });
 </script>
 
@@ -120,12 +112,8 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    cursor: url('/cursors/light/hand.cur'), pointer !important;
+    cursor: url('/cursors/hand.cur'), pointer !important;
     padding: 0;
-  }
-  
-  :global(html[data-theme="dark"]) .traffic {
-    cursor: url('/cursors/dark/hand.cur'), pointer !important;
   }
   
   .traffic:hover {
@@ -137,11 +125,7 @@
   }
   
   .traffic:disabled {
-    cursor: url('/cursors/light/no.cur'), not-allowed !important;
-  }
-  
-  :global(html[data-theme="dark"]) .traffic:disabled {
-    cursor: url('/cursors/dark/no.cur'), not-allowed !important;
+    cursor: url('/cursors/no.cur'), not-allowed !important;
   }
   
   .traffic:disabled:hover {
