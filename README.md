@@ -122,4 +122,4 @@ This project is provided as-is for personal and commercial use.
 
 ## Credits
 
-Made with ❤️ by tommy437
+Made with ❤️ by LAMAgalletta0IQ and Tommy437

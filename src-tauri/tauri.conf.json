@@ -45,7 +45,7 @@
     "icon": [
       "icons/icon.ico"
     ],
-    "copyright": "© 2025",
+    "copyright": "© 2025 LAMAgalletta0IQ and Tommy437",
     "category": "Utility",
     "shortDescription": "A modern file extractor and context builder for LLMs",
     "longDescription": "File Extractor - Extract and organize files for LLM context building"

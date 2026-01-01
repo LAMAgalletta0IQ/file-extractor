@@ -183,8 +183,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    /* Background Settings: background_opacity 0.20, background_blur 24 */
-    background: transparent;
+    background: rgba(0, 0, 0, 0.01); /* or rgba(255, 255, 255, 0.20) for light mode */
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     color: var(--fg);

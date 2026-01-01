@@ -2,7 +2,7 @@
 name = "file-extractor"
 version = "2.0.0"
 description = "A modern file extractor and context builder for LLMs"
-authors = ["you"]
+authors = ["LAMAgalletta0IQ", "Tommy437"]
 license = ""
 repository = ""
 edition = "2021"
