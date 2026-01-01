@@ -110,7 +110,7 @@
       {@html getFileIconSVG(node.name)}
       <span class="file-name" title={node.path}>{node.name}</span>
       {#if !isFile}
-        <span class="file-type">Cartella</span>
+        <span class="file-type">Folder</span>
       {/if}
     </div>
 
@@ -189,18 +189,18 @@
   }
   
   .file-checkbox:checked {
-    background-color: #3b82f6;
-    border-color: #3b82f6;
+    background-color: #5f5f5f;
+    border-color: #5f5f5f;
   }
   
   .file-checkbox:checked:hover {
-    background-color: #2563eb;
-    border-color: #2563eb;
+    background-color: #5f5f5f;
+    border-color: #5f5f5f;
   }
   
   .file-checkbox:indeterminate {
-    background-color: #3b82f6;
-    border-color: #3b82f6;
+    background-color: #5f5f5f;
+    border-color: #5f5f5f;
   }
   
   .file-checkbox:indeterminate::after {

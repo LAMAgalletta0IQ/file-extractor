@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 Tommy-Memory-Cleaner-main
+non-pushare
 
 # Editor directories and files
 .vscode/*

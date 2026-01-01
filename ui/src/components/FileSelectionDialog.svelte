@@ -75,7 +75,7 @@
     } catch (error) {
       console.error('Error scanning directory:', error);
       await showToastNotification(
-        `Errore durante la scansione della directory: ${error}`,
+        `Error during directory scan: ${error}`,
         'error'
       );
     } finally {
@@ -175,7 +175,7 @@
     const selectedFiles = Array.from(checkedPaths).filter(path => allFilePaths.has(path));
 
     if (selectedFiles.length === 0) {
-      await showToastNotification('Seleziona almeno un file!', 'warning');
+      await showToastNotification('Please select at least one file!', 'warning');
       return;
     }
 
@@ -217,26 +217,26 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
-      Espandi Tutto
+      Expand All
     </button>
     <button type="button" on:click={collapseAll} class="toolbar-btn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
-      Comprimi Tutto
+      Collapse All
     </button>
     <button type="button" on:click={handleSelectAll} class="toolbar-btn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="9 11 12 14 22 4"></polyline>
         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
       </svg>
-      Seleziona Tutti
+      Select All
     </button>
     <button type="button" on:click={handleSelectNone} class="toolbar-btn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
       </svg>
-      Deseleziona Tutti
+      Deselect All
     </button>
     <div style="flex: 1;"></div>
     <div class="search-box">
@@ -247,7 +247,7 @@
       <input
         type="text"
         bind:value={searchQuery}
-        placeholder="Cerca file..."
+        placeholder="Search files..."
         class="search-input"
       />
     </div>
@@ -267,7 +267,7 @@
           <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
           <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
         </svg>
-        <span>Scansione in corso...</span>
+        <span>Scanning in progress...</span>
       </div>
     {:else}
       <div class="tree-content">
@@ -304,20 +304,20 @@
           <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
           <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
         </svg>
-        <span>Scansione in corso...</span>
+        <span>Scanning in progress...</span>
       {:else}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
-        <span>Scansione completata - {fileCount} file trovati</span>
+        <span>Scan completed - {fileCount} file${fileCount === 1 ? '' : 's'} found</span>
       {/if}
     </div>
     <div class="footer-actions">
-      <div class="selected-count">{selectedCount} file selezionati</div>
-      <button type="button" on:click={onClose} class="btn-secondary">Annulla</button>
+      <div class="selected-count">{selectedCount} file${selectedCount === 1 ? '' : 's'} selected</div>
+      <button type="button" on:click={onClose} class="btn-secondary">Cancel</button>
       <button type="button" on:click={handleConfirm} disabled={selectedCount === 0} class="btn-primary" class:disabled={selectedCount === 0}>
-        Conferma Selezione
+        Confirm Selection
       </button>
     </div>
   </div>
@@ -484,7 +484,7 @@
   .selected-count {
     font-size: 13px;
     font-weight: 600;
-    color: #60a5fa;
+    color: #5f5f5f;
   }
   
   .btn-secondary {
@@ -505,7 +505,7 @@
   .btn-primary {
     padding: 8px 16px;
     border-radius: 10px !important;
-    background: #2563eb;
+    background: #5f5f5f;
     border: none;
     color: white;
     font-weight: 500;
@@ -514,7 +514,7 @@
   }
   
   .btn-primary:hover:not(.disabled) {
-    background: #1d4ed8;
+    background: #5f5f5f;
   }
   
   .btn-primary.disabled {

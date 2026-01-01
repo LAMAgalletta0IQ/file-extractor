@@ -13,13 +13,13 @@
   }
 
   function handleMaximize() {
-    // Non fa nulla, ma il pulsante è attivo
+    // Does nothing, but the button is active
   }
 
   async function handleDragStart(e: MouseEvent) {
-    // Solo se è click sinistro e non su un elemento interattivo (button, input, select, .traffic, .controls)
+    // Only if it's a left click and not on an interactive element (button, input, select, .traffic, .controls)
     const target = e.target as HTMLElement;
-    // Se il click è su un bottone traffic o dentro i controlli, non fare drag
+    // If the click is on a traffic button or inside the controls, don't drag
     if (target.closest('.traffic') || target.closest('.controls')) {
       return;
     }
@@ -38,7 +38,7 @@
   onMount(() => {
     // Apply cursor to titlebar - Konata Izumi
     const applyCursor = () => {
-      const cursorUrl = 'url(/cursor/Arrow.cur), move';
+      const cursorUrl = 'url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), move';
       
       const titlebar = document.querySelector('.titlebar') as HTMLElement;
       const draggable = document.querySelector('.draggable') as HTMLElement;
@@ -51,7 +51,7 @@
       }
     };
     
-    // Applica subito e ripetutamente per assicurarsi che venga applicato
+    // Apply immediately and repeatedly to ensure it gets applied
     setTimeout(() => applyCursor(), 50);
     setTimeout(() => applyCursor(), 100);
     setTimeout(() => applyCursor(), 200);
@@ -60,13 +60,16 @@
 
 <div
   class="titlebar"
-  style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); flex-shrink: 0; position: relative; background-color: rgba(255, 255, 255, 0.02); border-top-left-radius: 10px; border-top-right-radius: 10px; overflow: hidden;"
+  style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); flex-shrink: 0; position: relative; background-color: rgba(255, 255, 255, 0.02); border-top-left-radius: 12px; border-top-right-radius: 12px; overflow: hidden;"
   role="banner"
 >
+  <!-- Empty div to balance the controls on the right -->
+  <div class="spacer" style="width: 51px; flex-shrink: 0;"></div>
+
   <!-- Title - centered -->
   <div
     class="draggable"
-    style="position: absolute; left: 0; right: 60px; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; font-size: 16px; color: white; pointer-events: auto; z-index: 1;"
+    style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; font-size: 16px; color: white; pointer-events: auto; z-index: 1;"
     on:mousedown={handleDragStart}
     role="button"
     tabindex="0"
@@ -109,25 +112,29 @@
   .titlebar {
     user-select: none;
     -webkit-app-region: no-drag;
-    cursor: url('/cursor/Arrow.cur'), move !important;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), move !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     overflow: hidden;
   }
   
   .draggable {
-    cursor: url('/cursor/Arrow.cur'), move !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), move !important;
     -webkit-app-region: no-drag;
     user-select: none;
   }
   
+  .spacer {
+    visibility: hidden;
+  }
+
   .controls {
     display: flex;
     gap: 5px;
-    margin-left: auto;
     position: relative;
     z-index: 100;
     pointer-events: auto;
+    flex-shrink: 0;
   }
   
   .traffic {
@@ -136,7 +143,7 @@
     border-radius: 50%;
     border: none;
     outline: none;
-    cursor: url('/cursor/Hand.cur'), pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), pointer !important;
     padding: 0;
     -webkit-app-region: no-drag;
     transition: all 0.2s ease;
@@ -147,7 +154,7 @@
   
   
   .traffic:disabled {
-    cursor: url('/cursor/Arrow.cur'), not-allowed !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), not-allowed !important;
   }
   
   .traffic:disabled:hover {

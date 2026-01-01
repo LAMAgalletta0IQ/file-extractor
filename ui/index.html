@@ -32,6 +32,8 @@
         margin: 0;
         padding: 0;
         position: relative;
+        border-radius: 12px;
+        background: transparent;
       }
       
       /* Rimuove il bordo rettangolare su Windows 10 per finestre trasparenti */
@@ -64,18 +66,18 @@
       
       /* Cursore per elementi interattivi */
       a, button, [role="button"] {
-        cursor: url('/cursor/Hand.cur'), pointer !important;
+        cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), pointer !important;
       }
 
       /* Cursore per label e loro contenuti */
       label {
-        cursor: url('/cursor/Arrow.cur'), auto !important;
+        cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), auto !important;
       }
 
       label:hover,
       label:has(input):hover,
       label:has(button):hover {
-        cursor: url('/cursor/Hand.cur'), pointer !important;
+        cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), pointer !important;
       }
 
       /* SVG eredita il cursore del parent */
@@ -92,12 +94,12 @@
       input[type="search"],
       input[type="number"],
       textarea {
-        cursor: url('/cursor/Arrow.cur') 0 0, text !important;
+        cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), text !important;
       }
       
       /* Cursore per select e button */
       select, button {
-        cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+        cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
       }
       
       /* Forza ibeam anche su hover e focus per input di testo */
@@ -113,7 +115,7 @@
       input[type="number"]:focus,
       textarea:hover,
       textarea:focus {
-        cursor: url('/cursor/Arrow.cur') 0 0, text !important;
+        cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), text !important;
       }
       
       /* Rimuovi outline di focus predefinito */
@@ -123,7 +125,7 @@
       
       /* Custom focus styles */
       :focus-visible {
-        outline: 2px solid #0a84ff;
+        outline: 2px solid #5f5f5f;
         outline-offset: 2px;
       }
       

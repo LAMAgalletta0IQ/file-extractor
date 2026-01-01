@@ -157,7 +157,7 @@
     box-shadow: none !important;
   }
   
-  /* Rimuove eventuali bordi visibili su Windows 10 */
+  /* Removes any visible borders on Windows 10 */
   :global(body) {
     border: none !important;
     outline: none !important;
@@ -183,11 +183,14 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--bg);
+    /* Background Settings: background_opacity 0.20, background_blur 24 */
+    background: transparent;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     color: var(--fg);
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    /* Assicura che il contenuto copra completamente la finestra su Windows 10 */
+    /* Ensures the content completely covers the window on Windows 10 */
     margin: 0;
     padding: 0;
     box-shadow: none;
@@ -209,19 +212,17 @@
     flex-direction: column;
     min-height: 0;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 12px;
   }
   
   .main-content {
     flex: 1;
-    overflow-y: auto;
+    overflow: hidden;
     padding: 32px;
     background: transparent;
     min-height: 0;
-  }
-  
-  .main-content::-webkit-scrollbar {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
   
   .content-wrapper {
@@ -230,6 +231,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
   }
 </style>
 

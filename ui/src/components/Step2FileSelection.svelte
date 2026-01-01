@@ -61,7 +61,7 @@
 
   function updatePreview() {
     if (selectedFiles.length === 0) {
-      filesPreview = 'Nessun file selezionato...';
+      filesPreview = 'No files selected...';
       return;
     }
 
@@ -80,13 +80,13 @@
       folders.get(folder)!.push(fileName);
     });
 
-    let text = `${selectedFiles.length} file selezionati:\n\n`;
+    let text = `${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'} selected:\n\n`;
     let shownFolders = 0;
 
     for (const [folder, files] of folders.entries()) {
       if (shownFolders >= 2) {
         const remaining = folders.size - shownFolders;
-        text += `\n... e altri file in ${remaining} cartell${remaining === 1 ? 'a' : 'e'}`;
+        text += `\n... and other files in ${remaining} folder${remaining === 1 ? '' : 's'}`;
         break;
       }
 
@@ -122,7 +122,7 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
     </svg>
-    Step 2: Seleziona Source o File
+    Step 2: Select Source or File
   </div>
   
   <div style="display: flex; gap: 12px;">
@@ -134,7 +134,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
       </svg>
-      Scansiona Cartella
+      Scan Folder
     </button>
     
     <button
@@ -148,14 +148,14 @@
         <line x1="12" y1="18" x2="12" y2="12"></line>
         <line x1="9" y1="15" x2="15" y2="15"></line>
       </svg>
-      Aggiungi File
+      Add Files
     </button>
     
     <button
       type="button"
       on:click={handleClearSelection}
       class="btn-icon"
-      title="Pulisci selezione"
+      title="Clear selection"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="3 6 5 6 21 6"></polyline>
@@ -169,7 +169,7 @@
       readonly
       value={filesPreview}
       class="preview-textarea"
-      placeholder="Nessun file selezionato..."
+      placeholder="No files selected..."
     />
   </div>
 </div>

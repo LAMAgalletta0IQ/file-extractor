@@ -57,7 +57,7 @@
       <circle cx="12" cy="12" r="10"></circle>
       <circle cx="12" cy="12" r="3"></circle>
     </svg>
-    Step 1: Nome della Source
+    Step 1: Source Name
   </label>
   
   <div style="position: relative;">
@@ -73,7 +73,7 @@
         updateFilteredSuggestions(value);
       }}
       on:focus={handleFocus}
-      placeholder="Inserisci il nome della source..."
+      placeholder="Enter the source name..."
       class="source-input"
       class:has-suggestions={showSuggestions && filteredSuggestions.length > 0}
       class:has-value={sourceName.trim() !== ''}

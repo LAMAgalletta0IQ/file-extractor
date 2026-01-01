@@ -52,9 +52,9 @@
     --fg: #ffffff; /* Bianco puro per massima chiarezza */
     --input-border: rgba(255, 255, 255, 0.25); /* Ancora più visibile */
     --input-bg: rgba(140, 140, 150, 0.12); /* Estremamente trasparente per Mica */
-    --input-focus: #60a5fa; /* Blu ancora più chiaro e vivace */
+    --input-focus: #5f5f5f; /* Grigio */
     --bar-fill: rgba(255, 255, 255, 0.5); /* Ancora più visibile */
-    --btn-bg: #60a5fa; /* Blu ancora più chiaro e vivace */
+    --btn-bg: #5f5f5f; /* Grigio */
   }
 
   * {
@@ -76,28 +76,28 @@
     line-height: 1.5;
     background: transparent;
     color: var(--fg);
-    cursor: url('/cursor/Arrow.cur') 0 0, auto !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), auto !important;
   }
 
-  /* Cursore di default per tutti gli elementi */
-  * {
-    cursor: url('/cursor/Arrow.cur') 0 0, auto !important;
+  /* Cursore di default per tutti gli elementi - applicato a tutto il programma */
+  *, *::before, *::after {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), auto !important;
   }
 
   /* Cursore personalizzato per tutti gli elementi interattivi */
   a, [role="button"], [tabindex]:not([tabindex="-1"]) {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   /* Cursore per label e loro contenuti (inclusi SVG) */
   label {
-    cursor: url('/cursor/Arrow.cur') 0 0, auto !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), auto !important;
   }
 
   label:hover,
   label:has(input):hover,
   label:has(button):hover {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   /* SVG all'interno di label o altri elementi - eredita il cursore del parent */
@@ -110,13 +110,13 @@
   /* Altri elementi che potrebbero essere interattivi */
   [onclick],
   [onclick] * {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   /* Div e span con role button */
   div[role="button"],
   span[role="button"] {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   /* Input e Select globali - IMPORTANTE: permettere interazioni */
@@ -129,7 +129,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursor/Arrow.cur') 0 0, text !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), text !important;
   }
   
   /* Forza cursore ibeam anche su hover, focus e per tutto il contenuto */
@@ -152,7 +152,7 @@
   textarea,
   textarea:hover,
   textarea:focus {
-    cursor: url('/cursor/Arrow.cur') 0 0, text !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), text !important;
   }
   
   /* Forza ibeam anche per il contenuto interno degli input */
@@ -162,7 +162,7 @@
   input[type="password"] *,
   input[type="search"] *,
   textarea * {
-    cursor: url('/cursor/Arrow.cur') 0 0, text !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), text !important;
   }
 
   select,
@@ -170,7 +170,7 @@
     -webkit-user-select: auto !important;
     user-select: auto !important;
     pointer-events: auto !important;
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   input[type="text"],
@@ -208,12 +208,12 @@
   html[data-theme="dark"] input[type="number"]:focus,
   html[data-theme="dark"] select:focus,
   html[data-theme="dark"] textarea:focus {
-    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(95, 95, 95, 0.15);
   }
 
   /* Select styling per Windows - più tondeggiante e carino */
   select {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
     -webkit-appearance: none !important;
     appearance: none !important;
     -moz-appearance: none !important;
@@ -235,7 +235,7 @@
     border: 2px solid var(--border);
     border-radius: 6px !important;
     background: var(--input-bg);
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
     position: relative;
     transition: all 0.2s ease;
     margin: 0;
@@ -245,7 +245,7 @@
   input[type="checkbox"]:hover,
   input[type="checkbox"]:active,
   input[type="checkbox"]:focus {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   input[type="checkbox"]:hover {
@@ -265,19 +265,19 @@
 
   /* Label con checkbox - cursore personalizzato (solo per label che contengono checkbox) */
   label:has(input[type="checkbox"]) {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   label:has(input[type="checkbox"]):hover,
   label:has(input[type="checkbox"]):active {
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
 
   /* Button base */
   button {
     font-family: inherit;
     font-size: 13px;
-    cursor: url('/cursor/Hand.cur') 0 0, pointer !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
     transition: all 0.2s;
     color: var(--fg);
     background: var(--card);
@@ -290,12 +290,62 @@
     opacity: 0.9;
   }
 
+  /* Radio buttons */
+  input[type="radio"] {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  input[type="radio"]:hover,
+  input[type="radio"]:focus {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  label:has(input[type="radio"]) {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  /* Range input */
+  input[type="range"] {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  /* File input */
+  input[type="file"] {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  input[type="file"]::-webkit-file-upload-button {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  /* Links */
+  a, a * {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  /* Clickable divs and spans */
+  [onclick],
+  [onclick] *,
+  [style*="cursor: pointer"],
+  [style*="cursor:pointer"] {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
   /* Disabled state */
   button:disabled,
   input:disabled,
-  select:disabled {
+  select:disabled,
+  textarea:disabled {
     opacity: 0.5;
-    cursor: url('/cursor/Arrow.cur') 0 0, not-allowed !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), not-allowed !important;
   }
 
   /* Focus visible per accessibilità */
@@ -307,7 +357,7 @@
   html {
     background: transparent;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 12px;
   }
   
   html[data-theme="dark"] {
@@ -315,7 +365,7 @@
   }
 
   body {
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
   }
 
@@ -325,7 +375,7 @@
     height: 100vh;
     overflow: hidden;
     background: transparent;
-    border-radius: 10px;
+    border-radius: 12px;
     position: relative;
   }
 
@@ -348,14 +398,36 @@
   ::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 3px !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), auto !important;
   }
   
   ::-webkit-scrollbar-thumb {
     background: var(--bar-fill);
     border-radius: 3px !important;
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
   }
   
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.4);
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, pointer !important;
+  }
+
+  /* Cursori per elementi drag and drop */
+  [draggable="true"] {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur) 0 0, move !important;
+  }
+
+  /* Cursori per elementi con contenuto editabile */
+  [contenteditable="true"] {
+    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), text !important;
+  }
+
+  /* Assicura che tutti i figli di elementi interattivi ereditino il cursore corretto */
+  button *, 
+  a *, 
+  [role="button"] *,
+  label:has(input[type="checkbox"]) *,
+  label:has(input[type="radio"]) * {
+    cursor: inherit !important;
   }
 }

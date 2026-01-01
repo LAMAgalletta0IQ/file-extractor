@@ -14,13 +14,13 @@ pub async fn generate_output(
     source_name: String,
     output_path: String,
 ) -> Result<String, String> {
-    // Controlla se una generazione è già in corso
+    // Check if a generation is already in progress
     if GENERATION_RUNNING.compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst).is_err() {
-        return Err("Generazione già in corso, attendere il completamento".to_string());
+        return Err("Generation already in progress, please wait for completion".to_string());
     }
     
-    // Usa scopeguard per assicurarsi che il flag venga sempre rilasciato
-    // anche in caso di panic o early return
+    // Use scopeguard to ensure the flag is always released
+    // even in case of panic or early return
     let _guard = scopeguard::guard((), |_| {
         GENERATION_RUNNING.store(false, Ordering::SeqCst);
     });
@@ -61,7 +61,7 @@ pub async fn generate_output(
         let content = match read_file_with_fallback(&file_path) {
             Ok(content) => content,
             Err(e) => {
-                writeln!(output_file, "[Errore: impossibile leggere il file - {}]", e)
+                writeln!(output_file, "[Error: unable to read file - {}]", e)
                     .map_err(|e| format!("Failed to write error: {}", e))?;
                 writeln!(output_file)
                     .map_err(|e| format!("Failed to write newline: {}", e))?;
@@ -79,7 +79,7 @@ pub async fn generate_output(
     }
     
     Ok(format!(
-        "File generato con successo!\n\n📄 {}\n📁 {}",
+        "File generated successfully!\n\n📄 {}\n📁 {}",
         output_path
             .file_name()
             .and_then(|n| n.to_str())

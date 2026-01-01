@@ -12,12 +12,12 @@
   
   async function handleGenerate() {
     if (!sourceName.trim()) {
-      await showToastNotification('Inserisci il nome della source!', 'warning');
+      await showToastNotification('Please enter the source name!', 'warning');
       return;
     }
 
     if (selectedFiles.length === 0) {
-      await showToastNotification('Seleziona almeno un file!', 'warning');
+      await showToastNotification('Please select at least one file!', 'warning');
       return;
     }
 
@@ -49,7 +49,7 @@
     } catch (error) {
       console.error('Error generating output:', error);
       await showToastNotification(
-        `Errore durante la generazione del file: ${error}`,
+        `Error during file generation: ${error}`,
         'error'
       );
     } finally {
@@ -84,7 +84,7 @@
         <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
         <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
       </svg>
-      Generazione in corso...
+      Generating...
     {:else}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -99,7 +99,7 @@
     width: 100%;
     height: 48px;
     padding: 0 16px;
-    background: #2563eb;
+    background: #5f5f5f;
     border: none;
     border-radius: 10px !important;
     color: white;
@@ -113,7 +113,7 @@
   }
   
   .generate-btn:hover:not(.disabled) {
-    background: #1d4ed8;
+    background: #5f5f5f;
   }
   
   .generate-btn.disabled {
