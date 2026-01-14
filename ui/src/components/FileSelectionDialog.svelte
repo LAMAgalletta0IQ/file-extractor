@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { scanDirectory, getSelections, saveSelectionHistory } from '../lib/api';
   import { showToastNotification } from '../lib/notifications';
   import type { FileNode } from '../types';
@@ -96,10 +96,20 @@
     }
   }
   
-  function handleCheckboxChange(node: FileNode, checked: boolean) {
-    const newChecked = new Set(checkedPaths);
+  async function handleCheckboxChange(node: FileNode, checked: boolean) {
     const descendantPaths = getDescendantFilePaths(node);
     
+    // If selecting a folder, expand it first so children are rendered
+    if (checked && node.is_dir && !expandedFolders.has(node.path)) {
+      const newExpanded = new Set(expandedFolders);
+      newExpanded.add(node.path);
+      expandedFolders = newExpanded;
+      // Wait for Svelte to render the expanded children
+      await tick();
+    }
+    
+    // Now update the checked paths
+    const newChecked = new Set(checkedPaths);
     if (checked) {
       descendantPaths.forEach((path) => newChecked.add(path));
     } else {

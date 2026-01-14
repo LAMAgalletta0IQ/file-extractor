@@ -38,7 +38,7 @@
   onMount(() => {
     // Apply cursor to titlebar - Konata Izumi
     const applyCursor = () => {
-      const cursorUrl = 'url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), move';
+      const cursorUrl = 'url("/cursors/Frieren move.cur"), move';
       
       const titlebar = document.querySelector('.titlebar') as HTMLElement;
       const draggable = document.querySelector('.draggable') as HTMLElement;
@@ -112,14 +112,14 @@
   .titlebar {
     user-select: none;
     -webkit-app-region: no-drag;
-    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), move !important;
+    cursor: url("/cursors/Frieren move.cur"), move !important;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     overflow: hidden;
   }
   
   .draggable {
-    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), move !important;
+    cursor: url("/cursors/Frieren move.cur"), move !important;
     -webkit-app-region: no-drag;
     user-select: none;
   }
@@ -143,7 +143,7 @@
     border-radius: 50%;
     border: none;
     outline: none;
-    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), pointer !important;
+    cursor: url("/cursors/Frieren hand.cur"), pointer !important;
     padding: 0;
     -webkit-app-region: no-drag;
     transition: all 0.2s ease;
@@ -154,7 +154,7 @@
   
   
   .traffic:disabled {
-    cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1105.cur), not-allowed !important;
+    cursor: url("/cursors/Frieren unavailable.cur"), not-allowed !important;
   }
   
   .traffic:disabled:hover {

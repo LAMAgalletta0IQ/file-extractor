@@ -141,10 +141,10 @@
     z-index: 10;
     width: 100%;
     margin-top: 4px;
-    background: rgba(100, 100, 110, 0.15);
+    background: rgba(40, 40, 45, 0.85);
     border: 1px solid var(--border);
     border-radius: 12px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     max-height: 192px;
     overflow-y: auto;
     backdrop-filter: blur(20px);
@@ -166,17 +166,19 @@
   
   .suggestion-item {
     width: 100%;
-    padding: 8px 16px;
+    padding: 10px 16px;
     text-align: left;
     background: transparent;
     border: none;
     color: var(--fg);
-    transition: background-color 0.2s;
-    font-size: 14px;
+    transition: background-color 0.15s;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: url("/cursors/Frieren hand.cur") 0 0, pointer !important;
   }
   
   .suggestion-item:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(160, 160, 170, 0.2);
   }
   
   .suggestion-item:first-child {

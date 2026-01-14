@@ -11,8 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-Tommy-Memory-Cleaner-main
-non-pushare
+nonpush
 
 # Editor directories and files
 .vscode/*
@@ -29,9 +28,16 @@ non-pushare
 *.ps1
 *.bat
 *.txt
+*.cursorignore
 
 # Tauri
 src-tauri/target
+src-tauri/gen/
+
+# Rust/Cargo
+Cargo.lock
+**/*.rs.bk
+*.pdb
 
 # Personal notes and documentation
 md_personali/
@@ -44,6 +50,67 @@ pnpm-lock.yaml
 # Build artifacts
 *.tsbuildinfo
 .cache/
+.turbo/
+.next/
+out/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+
+# OS files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+
+# Editor and IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Python (if any scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+
+# Coverage and testing
+coverage/
+.nyc_output/
+*.lcov
+.jest/
 
 # TMC project
 TMC/
@@ -52,3 +119,4 @@ tommymemcleaner/
 # ExplorerBlurMica
 ExplorerBlurMica-main/
 ExplorerBlurMica/
+src-tauri/Cargo.lock

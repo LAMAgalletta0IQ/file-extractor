@@ -3,9 +3,11 @@
 
 mod commands;
 mod settings;
+mod notifications;
 
 use commands::{generate_output, scan_directory};
 use settings::{load_settings, save_settings, load_selections, save_selections, SettingsData};
+use notifications::{register_app_for_notifications, show_windows_notification};
 use std::sync::atomic::AtomicBool;
 use once_cell::sync::Lazy;
 
@@ -32,7 +34,43 @@ fn save_selection_history(folder_path: String, files: Vec<String>) -> Result<(),
     save_selections(&folder_path, files).map_err(|e| e.to_string())
 }
 
+#[tauri::command]
+fn send_notification(app: tauri::AppHandle, title: String, body: String) -> Result<(), String> {
+    // Use the Windows notification system that properly registers the app
+    show_windows_notification(&app, &title, &body)
+}
+
 fn main() {
+    // CRITICAL: Set AppUserModelID explicitly BEFORE any other operation
+    // This forces Windows to use the registered DisplayName instead of AppUserModelID
+    #[cfg(windows)]
+    {
+        use std::ffi::OsStr;
+        use std::os::windows::ffi::OsStrExt;
+        use windows_sys::Win32::UI::Shell::SetCurrentProcessExplicitAppUserModelID;
+
+        let app_id = "com.fileextractor.app";
+        let app_id_wide: Vec<u16> = OsStr::new(app_id).encode_wide().chain(Some(0)).collect();
+
+        unsafe {
+            // SetCurrentProcessExplicitAppUserModelID returns HRESULT:
+            // S_OK (0) = success
+            let result = SetCurrentProcessExplicitAppUserModelID(app_id_wide.as_ptr());
+            if result == 0 {
+                eprintln!("[File Extractor] AppUserModelID set explicitly: {}", app_id);
+            } else {
+                eprintln!("[File Extractor] WARNING: Failed to set AppUserModelID explicitly: HRESULT 0x{:08X}", result);
+            }
+        }
+    }
+
+    // Register app for Windows Toast notifications BEFORE everything else
+    // This is critical to correctly show name and icon in notifications
+    #[cfg(windows)]
+    {
+        register_app_for_notifications();
+    }
+
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_dialog::init())
@@ -44,7 +82,8 @@ fn main() {
             get_settings,
             update_settings,
             get_selections,
-            save_selection_history
+            save_selection_history,
+            send_notification
         ])
         .setup(|app| {
             #[cfg(target_os = "windows")]

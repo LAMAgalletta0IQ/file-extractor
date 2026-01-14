@@ -21,14 +21,16 @@
   let checkboxElement: HTMLInputElement;
   
   $: isExpanded = expandedFolders.has(node.path);
-  $: checked = isChecked(node);
-  $: indeterminate = isIndeterminate(node);
+  // Force reactivity by including checkedPaths in the reactive statement
+  $: checkedPaths, checked = isChecked(node);
+  $: checkedPaths, indeterminate = isIndeterminate(node);
   $: isFile = !node.is_dir;
   $: hasChildren = node.children && node.children.length > 0;
   $: showThis = shouldShowNode(node, searchQuery);
   
   $: if (checkboxElement) {
     checkboxElement.indeterminate = indeterminate;
+    checkboxElement.checked = checked;
   }
   
   function handleRowClick(e: MouseEvent) {
@@ -107,7 +109,7 @@
         class="file-checkbox"
       />
 
-      {@html getFileIconSVG(node.name)}
+      {@html getFileIconSVG(node.is_dir ? '' : node.name)}
       <span class="file-name" title={node.path}>{node.name}</span>
       {#if !isFile}
         <span class="file-type">Folder</span>
